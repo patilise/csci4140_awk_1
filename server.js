@@ -57,6 +57,10 @@ io.on('connection', function (socket) {
     });
     socket.on('swing', function (clientId, data) {
         console.log('swing: id ' + clientId + ', data ' + data);
-        io.to(socket.rooms[roomNum]).emit('swing', clientId, data);
+        for (var roomNum in socket.rooms) {
+            if (socket.rooms[roomNum] != socket.id) {
+                io.to(socket.rooms[roomNum]).emit('swing', clientId, data);
+            }
+        }
     });
 });
