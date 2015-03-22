@@ -9,7 +9,7 @@ socket.on('register', function(data) {
 socket.on('swing', function(recvClientId, data) {
     console.log('Received swing: from id ' + recvClientId + ', ' + data);
     if (clientId == 0) { // If at main screen, do work
-    
+        setScoreByStrength(data);
     }
 });
 

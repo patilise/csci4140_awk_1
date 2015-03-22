@@ -17,7 +17,7 @@
 <link rel="icon" href="/favicons/favicon.png">
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
 <div class="header">
     <h2 class="text-muted"><small>CSCI 4140: Project Trial</small>
     <span class="pull-right hidden-xs hidden-sm">
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <div class="btn-group btn-group-justified" role="group">
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-lg btn-remote btn-success" role="button">
+                                    <button type="button" class="btn btn-lg btn-remote btn-success" role="button" id="GameButton3">
                                         3
                                     </button>
                                 </div>
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <div class="btn-group btn-group-justified" role="group">
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-lg btn-remote btn-warning" role="button">
+                                    <button type="button" class="btn btn-lg btn-remote btn-warning" role="button" id="GameButton2">
                                         2
                                     </button>
                                 </div>
@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <div class="btn-group btn-group-justified" role="group">
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-lg btn-remote btn-danger" role="button">
+                                    <button type="button" class="btn btn-lg btn-remote btn-danger" role="button" id="GameButton1">
                                         1
                                     </button>
                                 </div>
@@ -76,5 +76,6 @@
 </div>
 <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 <script type="text/javascript" src="/js/session.js"></script>
+<script type="text/javascript" src="/js/game.js"></script>
 </body>
 </html>
