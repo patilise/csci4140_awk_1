@@ -54,11 +54,6 @@ io.on('connection', function (socket) {
     socket.on('register', function (data) {
         socket.join(data);
         console.log('register: ' + data);
-        for (var roomNum in socket.rooms) {
-            if (socket.rooms[roomNum] != socket.id) {
-                io.to(socket.rooms[roomNum]).emit('register', data);
-            }
-        }
     });
     socket.on('swing', function (clientId, data) {
         console.log('swing: id ' + clientId + ', data ' + data);

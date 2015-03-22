@@ -1,4 +1,6 @@
-﻿function setScoreByStrength(score) {
+﻿var isSwinging = false;
+var maxAcce = 0;
+function setScoreByStrength(score) {
     if (clientId != 0)
         return;
     
@@ -23,4 +25,27 @@
     else
         button3.setAttribute('class', 'btn btn-lg btn-remote');
     
+}
+
+function startSwing() {
+    isSwinging = true;
+    maxAcce = 0;
+    setTimeout(function() {
+        isSwinging = false;
+        sendSwing(maxAcce);
+        maxAcce = 0;
+    }, 5000);
+}
+
+function deviceMotionHandler(eventData) {
+    if (!isSwinging)
+        return;
+    var acceZ = eventData.acceleration.z;
+    if (acceZ > maxAcce)
+        maxAcce = acceZ;
+}
+
+function round(val) {
+    var amt = 10;
+    return Math.round(val * amt) / amt;
 }

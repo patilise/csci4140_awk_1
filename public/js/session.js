@@ -13,6 +13,11 @@ socket.on('swing', function(recvClientId, data) {
     }
 });
 
+function sendSwing(swing) {
+    console.log('Send swing: ' + swing);
+    socket.emit('swing', clientId(), swing);
+}
+
 function getSessionId() {
     var pageURL = document.URL;
     var n = pageURL.search(/\/session\/.*\//);
@@ -42,4 +47,17 @@ function registerSession() {
     }
 }
 
-registerSession();
+function init() {
+    registerSession();
+    sessionId = getSessionId();
+    clientId = getClientId();
+    if (clientId != 0) {
+        if ((window.DeviceMotionEvent) || ('listenForDeviceMovement' in window)) {
+            window.addEventListener('devicemotion', deviceMotionHandler, false);
+        } else {
+            console.log('Not supported on your device or browser.  Sorry.');
+        }
+    }
+}
+
+init();
