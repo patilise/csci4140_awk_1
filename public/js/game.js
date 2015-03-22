@@ -12,15 +12,15 @@ function setScoreByStrength(score) {
     if (isNaN(score))
         return;
     
-    if (score >= 100)
+    if (score >= 10)
         button1.setAttribute('class', 'btn btn-lg btn-remote btn-danger');
     else
         button1.setAttribute('class', 'btn btn-lg btn-remote');
-    if (score >= 200)
+    if (score >= 30)
         button2.setAttribute('class', 'btn btn-lg btn-remote btn-warning');
     else
         button2.setAttribute('class', 'btn btn-lg btn-remote');
-    if (score >= 300)
+    if (score >= 50)
         button3.setAttribute('class', 'btn btn-lg btn-remote btn-success');
     else
         button3.setAttribute('class', 'btn btn-lg btn-remote');
