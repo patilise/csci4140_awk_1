@@ -15,7 +15,7 @@ socket.on('swing', function(recvClientId, data) {
 
 function sendSwing(swing) {
     console.log('Send swing: ' + swing);
-    socket.emit('swing', clientId(), swing);
+    socket.emit('swing', clientId, swing);
 }
 
 function getSessionId() {

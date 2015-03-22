@@ -30,6 +30,7 @@ function setScoreByStrength(score) {
 function startSwing() {
     isSwinging = true;
     maxAcce = 0;
+    console.log('Start swing');
     setTimeout(function() {
         isSwinging = false;
         sendSwing(maxAcce);
