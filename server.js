@@ -1,159 +1,67 @@
-#!/bin/env node
-//  OpenShift sample Node application
-var express = require('express');
-var fs      = require('fs');
+﻿var express = require('express');
+var path = require('path');
+var http = require('http');
+var app = express();
+var basicAuth = require('basic-auth-connect');
 
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8000;
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+var server = app.listen(server_port, server_ip_address, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('Listening at http://%s:%s', host, port);
+});
 
-/**
- *  Define the sample application.
- */
-var SampleApp = function() {
-
-    //  Scope.
-    var self = this;
-
-
-    /*  ================================================================  */
-    /*  Helper functions.                                                 */
-    /*  ================================================================  */
-
-    /**
-     *  Set up server IP address and port # using env variables/defaults.
-     */
-    self.setupVariables = function() {
-        //  Set the environment variables we need.
-        self.ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-        self.port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
-
-        if (typeof self.ipaddress === "undefined") {
-            //  Log errors on OpenShift but continue w/ 127.0.0.1 - this
-            //  allows us to run/test the app locally.
-            console.warn('No OPENSHIFT_NODEJS_IP var, using 127.0.0.1');
-            self.ipaddress = "127.0.0.1";
-        };
-    };
-
-
-    /**
-     *  Populate the cache.
-     */
-    self.populateCache = function() {
-        if (typeof self.zcache === "undefined") {
-            self.zcache = { 'index.html': '' };
+var io = require('socket.io')(server);
+app.use(basicAuth('threeriders', 'awk'));
+app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
+app.use('/favicons', express.static(path.join(__dirname, 'public', 'favicons')));
+app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts')));
+app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
+app.get('/session/:roomId/:clientId', function (request, response) {
+    if (isNaN(request.params.roomId)) {
+        response.redirect('/');
+    } else {
+        var roomIdInt = parseInt(request.params.roomId);
+        var clientId = parseInt(request.params.clientId);
+        if (roomIdInt >= 1 && roomIdInt <= 10000) {
+            if (clientId == 0)
+                response.sendFile(__dirname + '/views/index.html');
+            else if (clientId <= 4)
+                response.sendFile(__dirname + '/views/client.html');
+            else
+                response.redirect('/');
+        } else {
+            response.redirect('/');
         }
+    } 
+});
+app.get('/', function (request, response) {
+    var randomRoomNum = Math.floor((Math.random() * 10000) + 1).toString();
+    var roomList = io.sockets.adapter.rooms;
+    while (roomList[randomRoomNum] !== undefined) {
+        randomRoomNum = Math.floor((Math.random() * 10000) + 1).toString();
+    }
+    response.redirect('/session/' + randomRoomNum + '/0');
+});
 
-        //  Local cache for static content.
-        self.zcache['index.html'] = fs.readFileSync('./index.html');
-    };
-
-
-    /**
-     *  Retrieve entry (content) from cache.
-     *  @param {string} key  Key identifying content to retrieve from cache.
-     */
-    self.cache_get = function(key) { return self.zcache[key]; };
-
-
-    /**
-     *  terminator === the termination handler
-     *  Terminate server on receipt of the specified signal.
-     *  @param {string} sig  Signal to terminate on.
-     */
-    self.terminator = function(sig){
-        if (typeof sig === "string") {
-           console.log('%s: Received %s - terminating sample app ...',
-                       Date(Date.now()), sig);
-           process.exit(1);
+io.on('connection', function (socket) {
+    console.log('New user connected');
+    
+    socket.on('disconnect', function() {
+        console.log('User disconnected');
+    });
+    socket.on('register', function (data) {
+        socket.join(data);
+        console.log('register: ' + data);
+        for (var roomNum in socket.rooms) {
+            if (socket.rooms[roomNum] != socket.id) {
+                io.to(socket.rooms[roomNum]).emit('register', data);
+            }
         }
-        console.log('%s: Node server stopped.', Date(Date.now()) );
-    };
-
-
-    /**
-     *  Setup termination handlers (for exit and a list of signals).
-     */
-    self.setupTerminationHandlers = function(){
-        //  Process on exit and signals.
-        process.on('exit', function() { self.terminator(); });
-
-        // Removed 'SIGPIPE' from the list - bugz 852598.
-        ['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
-         'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
-        ].forEach(function(element, index, array) {
-            process.on(element, function() { self.terminator(element); });
-        });
-    };
-
-
-    /*  ================================================================  */
-    /*  App server functions (main app logic here).                       */
-    /*  ================================================================  */
-
-    /**
-     *  Create the routing table entries + handlers for the application.
-     */
-    self.createRoutes = function() {
-        self.routes = { };
-
-        self.routes['/asciimo'] = function(req, res) {
-            var link = "http://i.imgur.com/kmbjB.png";
-            res.send("<html><body><img src='" + link + "'></body></html>");
-        };
-
-        self.routes['/'] = function(req, res) {
-            res.setHeader('Content-Type', 'text/html');
-            res.send(self.cache_get('index.html') );
-        };
-    };
-
-
-    /**
-     *  Initialize the server (express) and create the routes and register
-     *  the handlers.
-     */
-    self.initializeServer = function() {
-        self.createRoutes();
-        self.app = express.createServer();
-
-        //  Add handlers for the app (from the routes).
-        for (var r in self.routes) {
-            self.app.get(r, self.routes[r]);
-        }
-    };
-
-
-    /**
-     *  Initializes the sample application.
-     */
-    self.initialize = function() {
-        self.setupVariables();
-        self.populateCache();
-        self.setupTerminationHandlers();
-
-        // Create the express server and routes.
-        self.initializeServer();
-    };
-
-
-    /**
-     *  Start the server (starts up the sample application).
-     */
-    self.start = function() {
-        //  Start the app on the specific interface (and port).
-        self.app.listen(self.port, self.ipaddress, function() {
-            console.log('%s: Node server started on %s:%d ...',
-                        Date(Date.now() ), self.ipaddress, self.port);
-        });
-    };
-
-};   /*  Sample Application.  */
-
-
-
-/**
- *  main():  Main code.
- */
-var zapp = new SampleApp();
-zapp.initialize();
-zapp.start();
-
+    });
+    socket.on('swing', function (clientId, data) {
+        console.log('swing: id ' + clientId + ', data ' + data);
+        io.to(socket.rooms[roomNum]).emit('swing', clientId, data);
+    });
+});
