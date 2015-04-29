@@ -1,12 +1,12 @@
 ﻿var isSwinging = false;
 var maxAcce = 0;
-function setScoreByStrength(score) {
+function setScoreByStrength(player, score) {
     if (clientId != 0)
         return;
     
-    var button1 = document.getElementById('GameButton1');
-    var button2 = document.getElementById('GameButton2');
-    var button3 = document.getElementById('GameButton3');
+    var button1 = document.getElementById('GameButton' + player + '_1');
+    var button2 = document.getElementById('GameButton' + player + '_2');
+    var button3 = document.getElementById('GameButton' + player + '_3');
     
     score = parseInt(score);
     if (isNaN(score))
