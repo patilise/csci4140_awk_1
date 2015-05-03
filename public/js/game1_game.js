@@ -12,7 +12,8 @@ function showResult() {
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-danger');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
-        }, 1000);
+        }
+    }, 1000);
     setTimeout(function() {
         var i = 2;
         console.log('Result step ' + i);
@@ -23,7 +24,8 @@ function showResult() {
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-warning');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
-        }, 2000);
+        }
+    }, 2000);
     setTimeout(function() {
         var i = 3;
         console.log('Result step ' + i);
@@ -34,7 +36,8 @@ function showResult() {
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-success');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
-        }, 3000);
+        }
+    }, 3000);
     setTimeout(function() {
         var i = 4;
         console.log('Result step ' + i);
@@ -45,7 +48,8 @@ function showResult() {
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-info');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
-        }, 4000);
+        }
+    }, 4000);
     setTimeout(function() {
         var i = 5;
         console.log('Result step ' + i);
@@ -56,7 +60,8 @@ function showResult() {
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-primary');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
-        }, 5000);
+        }
+    }, 5000);
     console.log('Set result timeout functions');
 }
 
