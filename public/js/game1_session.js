@@ -58,6 +58,7 @@ function startGame_ScreenSide() {
             document.getElementById('GameButton' + i + '_' + j).setAttribute('class', 'btn btn-lg btn-remote');
     startTime = Date.now();
     setTimeout(showResult, 5000);
+    console.log("Start game");
 }
 
 function init() {
@@ -67,6 +68,7 @@ function init() {
     if (clientId != 0) {
         if ((window.DeviceMotionEvent) || ('listenForDeviceMovement' in window)) {
             window.addEventListener('devicemotion', deviceMotionHandler, false);
+            startGame_Mobile();
         } else {
             console.log('Not supported on your device or browser.  Sorry.');
         }

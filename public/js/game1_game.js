@@ -18,7 +18,7 @@ function showResult() {
     }
 }
 
-function startSwing() {
+function startGame_Mobile() {
     isSwinging = true;
     console.log('Start swing');
 }
