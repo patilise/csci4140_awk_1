@@ -55,11 +55,11 @@ io.on('connection', function (socket) {
         socket.join(data);
         console.log('register: ' + data);
     });
-    socket.on('swing', function (clientId, data) {
-        console.log('swing: id ' + clientId + ', data ' + data);
+    socket.on('swing', function (clientId, data, time) {
+        console.log('swing: id ' + clientId + ', data ' + data + ', time ' + time);
         for (var roomNum in socket.rooms) {
             if (socket.rooms[roomNum] != socket.id) {
-                io.to(socket.rooms[roomNum]).emit('swing', clientId, data);
+                io.to(socket.rooms[roomNum]).emit('swing', clientId, data, time);
             }
         }
     });
