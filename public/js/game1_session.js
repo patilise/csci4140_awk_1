@@ -10,10 +10,13 @@ socket.on('register', function(data) {
     clientId = getClientId();
 });
 socket.on('swing', function(recvClientId, data, time) {
-    console.log('Received swing: from id ' + recvClientId + ', ' + data);
     if (clientId == 0) { // If at main screen, do work
-        if (time >= startTime && time <= startTime + 5000 && data > clientScore[recvClientId])
+        if (time >= startTime && time <= startTime + 5000 && data > clientScore[recvClientId]) {
             clientScore[recvClientId] = data;
+            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
+        } else {
+            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', discarded');
+        }
     }
 });
 

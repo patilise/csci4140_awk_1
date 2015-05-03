@@ -4,6 +4,7 @@ function showResult() {
     for (var level = 1; level <= 3; ++level) {
         setTimeout(function() {
             var i = level;
+            console.log('Result step ' + i);
             return function() {
                 button = [];
                 for (var j = 1; j <= 4; ++j) {
@@ -16,6 +17,7 @@ function showResult() {
             }
         }(), 1000 * level);
     }
+    console.log('Set result timeout functions');
 }
 
 function startGame_Mobile() {
