@@ -4,8 +4,8 @@ function showResult() {
     for (var level = 1; level <= 3; ++level) {
         setTimeout(function() {
             var i = level;
-            console.log('Result step ' + i);
             return function() {
+                console.log('Result step ' + i);
                 button = [];
                 for (var j = 1; j <= 4; ++j) {
                     button[j-1] = document.getElementById('GameButton' + j + '_' + i);

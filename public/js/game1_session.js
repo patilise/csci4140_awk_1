@@ -11,11 +11,13 @@ socket.on('register', function(data) {
 });
 socket.on('swing', function(recvClientId, data, time) {
     if (clientId == 0) { // If at main screen, do work
-        if (time >= startTime && time <= startTime + 5000 && data > clientScore[recvClientId]) {
+        var clientTime = parseInt(time);
+        var clientData = parseFloat(data);
+        if (clientTime >= startTime && clientTime <= startTime + 5000 && clientData > clientScore[recvClientId]) {
             clientScore[recvClientId] = data;
             console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
         } else {
-            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', discarded');
+            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
         }
     }
 });
