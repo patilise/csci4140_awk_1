@@ -58,8 +58,8 @@ function registerSession() {
 
 function startGame_ScreenSide() {
     clientScore = [0, 0, 0, 0];
-    for (var i = 1; i <= 4; ++i)
-        for (var j = 1; j <= 3; ++j)
+    for (var i = 1; i <= NUM_OF_PLAYERS; ++i)
+        for (var j = 1; j <= NUM_OF_LEVELS; ++j)
             document.getElementById('GameButton' + i + '_' + j).setAttribute('class', 'btn btn-lg btn-remote');
     startTime = Date.now();
     setTimeout(showResult, 5000);
@@ -80,4 +80,4 @@ function init() {
     }
 }
 
-init();
+window.addEventListener('load', init);
