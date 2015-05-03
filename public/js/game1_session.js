@@ -1,21 +1,25 @@
 ﻿var socket = io('ws://' + window.location.hostname + ':8000/');
 var sessionId = null;
 var clientId = null;
+var startTime = 0;
+var clientScore = [0, 0, 0, 0];
+
 socket.on('register', function(data) {
     console.log('Received register: ' + data);
     sessionId = data;
     clientId = getClientId();
 });
-socket.on('swing', function(recvClientId, data) {
+socket.on('swing', function(recvClientId, data, time) {
     console.log('Received swing: from id ' + recvClientId + ', ' + data);
     if (clientId == 0) { // If at main screen, do work
-        setScoreByStrength(recvClientId, data);
+        if (time >= startTime && time <= startTime + 5000 && data > clientScore[recvClientId])
+            clientScore[recvClientId] = data;
     }
 });
 
 function sendSwing(swing) {
     console.log('Send swing: ' + swing);
-    socket.emit('swing', clientId, swing);
+    socket.emit('swing', clientId, swing, Date.now());
 }
 
 function getSessionId() {
@@ -45,6 +49,15 @@ function registerSession() {
     } else {
         console.log('Session ID and/or client ID is null!');
     }
+}
+
+function startGame_ScreenSide() {
+    clientScore = [0, 0, 0, 0];
+    for (var i = 0; i < 4; ++i)
+        for (var j = 0; j < 4; ++j)
+            document.getElementById('GameButton' + j + '_' + i).setAttribute('class', 'btn btn-lg btn-remote');
+    startTime = Date.now();
+    setTimeout(showResult, 5000);
 }
 
 function init() {
