@@ -1,7 +1,7 @@
 ﻿var isSwinging = false;
 var MIN_ACCE = 1;
 function showResult() {
-    for (var level = 1; level < 4; ++level) {
+    for (var level = 1; level <= 3; ++level) {
         setTimeout(function() {
             var i = level;
             return function() {

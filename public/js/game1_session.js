@@ -53,9 +53,9 @@ function registerSession() {
 
 function startGame_ScreenSide() {
     clientScore = [0, 0, 0, 0];
-    for (var i = 0; i < 4; ++i)
-        for (var j = 0; j < 4; ++j)
-            document.getElementById('GameButton' + j + '_' + i).setAttribute('class', 'btn btn-lg btn-remote');
+    for (var i = 1; i <= 4; ++i)
+        for (var j = 1; j <= 3; ++j)
+            document.getElementById('GameButton' + i + '_' + j).setAttribute('class', 'btn btn-lg btn-remote');
     startTime = Date.now();
     setTimeout(showResult, 5000);
 }
