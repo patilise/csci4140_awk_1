@@ -9,9 +9,9 @@ function showResult() {
                 for (var j = 1; j <= 4; ++j) {
                     button[j-1] = document.getElementById('GameButton' + j + '_' + i);
                     if (clientScore[j-1] >= 10 * i)
-                        button1[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-danger');
+                        button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-danger');
                     else
-                        button1[j-1].setAttribute('class', 'btn btn-lg btn-remote');
+                        button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
                 }
             }
         }(), 1000 * level);
