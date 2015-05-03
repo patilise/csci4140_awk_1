@@ -73,7 +73,6 @@ function init() {
     if (clientId != 0) {
         if ((window.DeviceMotionEvent) || ('listenForDeviceMovement' in window)) {
             window.addEventListener('devicemotion', deviceMotionHandler, false);
-            startGame_Mobile();
         } else {
             console.log('Not supported on your device or browser.  Sorry.');
         }
