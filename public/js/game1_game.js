@@ -62,6 +62,15 @@ function showResult() {
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
         }
     }, 5000);
+    setTimeout(function() {
+        winner = 0;
+        for (var i = 1; i <= 4; i++)
+            document.getElementById('GameResult' + i).setAttribute('class', 'btn btn-lg btn-remote');
+        for (var i = 1; i <= 3; i++)
+            if (clientScore[i] > clientScore[winner])
+                winner = i;
+        document.getElementById('GameResult' + (winner+1)).setAttribute('class', 'btn btn-lg btn-remote btn-success');
+    }, 6000);
     console.log('Set result timeout functions');
 }
 

@@ -3,6 +3,7 @@ var sessionId = null;
 var clientId = null;
 var startTime = 0;
 var clientScore = [0, 0, 0, 0];
+var winner = 0;
 
 socket.on('register', function(data) {
     console.log('Received register: ' + data);
