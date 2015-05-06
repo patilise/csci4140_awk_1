@@ -22,47 +22,47 @@ hr {
     background-color: #E0736F;
 }
 .button2_1 {
-    background-color: lighten(@brand-warning, 90%);
+    background-color: #FCF0DF;
 }
 .button2_2 {
-    background-color: lighten(@brand-warning, 70%);
+    background-color: #FBE8CD;
 }
 .button2_3 {
-    background-color: lighten(@brand-warning, 50%);
+    background-color: #F8D7A8;
 }
 .button2_4 {
-    background-color: lighten(@brand-warning, 30%);
+    background-color: #F5C684;
 }
 .button2_5 {
-    background-color: lighten(@brand-warning, 10%);
+    background-color: #F2B560;
 }
 .button3_1 {
-    background-color: lighten(@brand-success, 90%);
+    background-color: #E5F4E5;
 }
 .button3_2 {
-    background-color: lighten(@brand-success, 70%);
+    background-color: #C9E8C9;
 }
 .button3_3 {
-    background-color: lighten(@brand-success, 50%);
+    background-color: #AEDCAE;
 }
 .button3_4 {
-    background-color: lighten(@brand-success, 30%);
+    background-color: #93D093;
 }
 .button3_5 {
-    background-color: lighten(@brand-success, 10%);
+    background-color: #77C477;
 }
 .button4_1 {
-    background-color: lighten(@brand-primary, 90%);
+    background-color: #C1D9EE;
 }
 .button4_2 {
-    background-color: lighten(@brand-primary, 70%);
+    background-color: #A2C6E5;
 }
 .button4_3 {
-    background-color: lighten(@brand-primary, 50%);
+    background-color: #83B3DC;
 }
 .button4_4 {
-    background-color: lighten(@brand-primary, 30%);
+    background-color: #65A0D4;
 }
 .button4_5 {
-    background-color: lighten(@brand-primary, 10%);
+    background-color: #468ECB;
 }
