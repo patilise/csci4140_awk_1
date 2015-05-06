@@ -69,7 +69,9 @@ function showResult() {
         for (var i = 1; i <= 3; i++)
             if (clientScore[i] > clientScore[winner])
                 winner = i;
-        document.getElementById('GameResult' + (winner+1)).setAttribute('class', 'btn btn-lg btn-remote btn-success');
+        for (var i = 0; i <= 3; i++)
+            if (clientScore[i] == clientScore[winner])
+                document.getElementById('GameResult' + (i+1)).setAttribute('class', 'btn btn-lg btn-remote btn-success');
     }, 6000);
     console.log('Set result timeout functions');
 }
