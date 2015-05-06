@@ -6,8 +6,8 @@ var clientScore = [0, 0, 0, 0];
 var winner = 0;
 
 socket.on('register', function(sId, cId) {
-    console.log('Received register: ' + data);
-    sessionId = data;
+    console.log('Received register: ' + sId + ' ' + cId);
+    sessionId = sId;
     clientId = getClientId();
     if (clientId == 0) { // If at main screen, do work
         var element = document.getElementById('QR' + cId);
@@ -37,7 +37,7 @@ function getSessionId() {
     var pageURL = document.URL;
     var n = pageURL.search(/\/session\/.*\//);
     if (n != -1) {
-        return pageURL.substring(n + 9, pageURL.length - 2);
+        return parseInt(pageURL.substring(n + 9, pageURL.length - 2));
     } else {
         return null;
     }
