@@ -20,7 +20,7 @@ function showResult() {
                         button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
                 }
             };
-        }(), 500*level);
+        }(), 200*level);
     }
     
     winner = 0;
