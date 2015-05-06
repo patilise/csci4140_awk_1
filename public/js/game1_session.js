@@ -29,7 +29,7 @@ socket.on('swing', function(recvClientId, data, time) {
                         var j = recvClientId;
                         return function() {
                             var button = document.getElementById('GameButton' + j + '_' + i);
-                            if (localClientScore[j-1] >= 6 * i)
+                            if (clientScore[j-1] >= 6 * i)
                                 button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
                             else
                                 button.setAttribute('class', 'btn btn-lg btn-remote');
