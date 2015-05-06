@@ -2,6 +2,9 @@
 var NUM_OF_LEVELS = 12;
 var NUM_OF_PLAYERS = 4;
 function showResult() {
+    var localClientScore = [0,0,0,0];
+    for (var i = 0; i < NUM_OF_PLAYERS; ++i)
+        localClientScore[i] = clientScore[i];
     for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
         setTimeout(function() {
             var i = level;
@@ -10,7 +13,7 @@ function showResult() {
                 button = [];
                 for (var j = 1; j <= NUM_OF_PLAYERS; ++j) {
                     button[j-1] = document.getElementById('GameButton' + j + '_' + i);
-                    if (clientScore[j-1] >= 6 * i)
+                    if (localClientScore[j-1] >= 6 * i)
                         button[j-1].setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
                     else
                         button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
@@ -21,13 +24,13 @@ function showResult() {
     
     winner = 0;
     for (var i = 1; i <= 3; i++)
-        if (clientScore[i] > clientScore[winner])
+        if (localClientScore[i] > localClientScore[winner])
             winner = i;
     setTimeout(function() {
         for (var i = 1; i <= 4; i++)
             document.getElementById('GameResult' + i).setAttribute('class', 'btn btn-lg btn-remote');
         for (var i = 0; i <= 3; i++)
-            if (clientScore[i] == clientScore[winner]) {
+            if (localClientScore[i] == localClientScore[winner]) {
                 var element = document.getElementById('GameResult' + (i+1));
                 element.setAttribute('class', 'btn btn-lg btn-remote btn-success');
                 element.textContent = 'WIN';
@@ -37,7 +40,7 @@ function showResult() {
                 element.textContent = 'LOSE';
             }
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
-    }, 500*(clientScore[winner] / 6 + 1));
+    }, 500*(localClientScore[winner] / 6 + 1));
     console.log('Set result timeout functions');
 }
 
