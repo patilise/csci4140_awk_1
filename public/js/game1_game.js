@@ -37,7 +37,7 @@ function showResult() {
                 element.textContent = 'LOSE';
             }
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
-    }, 800*(clientScore[winner] / 6 + 1);
+    }, 800*(clientScore[winner] / 6 + 1));
     console.log('Set result timeout functions');
 }
 
