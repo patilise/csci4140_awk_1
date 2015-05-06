@@ -72,7 +72,7 @@ function startGame_ScreenSide() {
     for (var i = 1; i <= 4; i++) {
         var element = document.getElementById('GameResult' + i);
         element.setAttribute('class', 'btn btn-lg btn-remote hidden');
-        element.textContent = '';
+        element.textContent = ' ';
     }
     startTime = Date.now();
     setTimeout(showResult, 6000);
