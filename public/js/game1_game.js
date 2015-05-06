@@ -36,6 +36,7 @@ function showResult() {
                 element.setAttribute('class', 'btn btn-lg btn-remote btn-danger');
                 element.textContent = 'LOSE';
             }
+        document.getElementById('StartGroup').setAttribute('class', 'form-group');
     }, 800*(NUM_OF_LEVELS + 1));
     console.log('Set result timeout functions');
 }

@@ -75,6 +75,7 @@ function startGame_ScreenSide() {
         element.textContent = ' ';
     }
     document.getElementById('QRGroup').setAttribute('class', 'hidden');
+    document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
     startTime = Date.now();
     setTimeout(showResult, 6000);
     console.log("Start game");
