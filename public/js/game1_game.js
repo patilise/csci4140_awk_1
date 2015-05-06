@@ -2,7 +2,7 @@
 var NUM_OF_LEVELS = 10;
 var NUM_OF_PLAYERS = 4;
 function showResult() {
-    for (var level = 1; level <= NUM_OF_LEVELS; ++level) {
+    for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
         setTimeout(function() {
             var i = level;
             return function() {

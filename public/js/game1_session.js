@@ -67,13 +67,14 @@ function startGame_ScreenSide() {
     clientScore = [0, 0, 0, 0];
     document.getElementById('GameButtons').setAttribute('class', 'panel-body');
     for (var i = 1; i <= NUM_OF_PLAYERS; ++i)
-        for (var j = 1; j <= NUM_OF_LEVELS; ++j)
+        for (var j = 0; j <= NUM_OF_LEVELS; ++j)
             document.getElementById('GameButton' + i + '_' + j).setAttribute('class', 'btn btn-lg btn-remote');
     for (var i = 1; i <= 4; i++) {
         var element = document.getElementById('GameResult' + i);
         element.setAttribute('class', 'btn btn-lg btn-remote hidden');
         element.textContent = ' ';
     }
+    document.getElementById('QRGroup').setAttribute('class', 'hidden');
     startTime = Date.now();
     setTimeout(showResult, 6000);
     console.log("Start game");
