@@ -66,10 +66,10 @@ function startGame_ScreenSide() {
     clientScore = [0, 0, 0, 0];
     for (var i = 1; i <= NUM_OF_PLAYERS; ++i)
         for (var j = 1; j <= NUM_OF_LEVELS; ++j)
-            document.getElementById('GameButton' + i + '_' + j).setAttribute('class', 'btn btn-lg btn-remote');
+            document.getElementById('GameButton' + i + '_' + j).setAttribute('class', 'btn btn-lg btn-remote hidden');
     for (var i = 1; i <= 4; i++) {
         var element = document.getElementById('GameResult' + i);
-        element.setAttribute('class', 'btn btn-lg btn-remote');
+        element.setAttribute('class', 'btn btn-lg btn-remote hidden');
         element.textContent = '';
     }
     startTime = Date.now();
