@@ -21,7 +21,7 @@ function showResult() {
         for (var j = 1; j <= NUM_OF_PLAYERS; ++j) {
             button[j-1] = document.getElementById('GameButton' + j + '_' + i);
             if (clientScore[j-1] >= 10 * i)
-                button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-warning');
+                button[j-1].setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
         }
@@ -33,7 +33,7 @@ function showResult() {
         for (var j = 1; j <= NUM_OF_PLAYERS; ++j) {
             button[j-1] = document.getElementById('GameButton' + j + '_' + i);
             if (clientScore[j-1] >= 10 * i)
-                button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-success');
+                button[j-1].setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
         }
@@ -45,7 +45,7 @@ function showResult() {
         for (var j = 1; j <= NUM_OF_PLAYERS; ++j) {
             button[j-1] = document.getElementById('GameButton' + j + '_' + i);
             if (clientScore[j-1] >= 10 * i)
-                button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-primary');
+                button[j-1].setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
         }
@@ -57,7 +57,7 @@ function showResult() {
         for (var j = 1; j <= NUM_OF_PLAYERS; ++j) {
             button[j-1] = document.getElementById('GameButton' + j + '_' + i);
             if (clientScore[j-1] >= 10 * i)
-                button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-info');
+                button[j-1].setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i');
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
         }

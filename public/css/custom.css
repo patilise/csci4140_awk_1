@@ -1,3 +1,9 @@
+
+@brand-primary: darken(#428bca, 6.5%);
+@brand-success: #5cb85c;
+@brand-info:    #5bc0de;
+@brand-warning: #f0ad4e;
+@brand-danger:  #d9534f;
 .btn-remote {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -10,16 +16,16 @@ hr {
     color: lighten(@brand-danger, 90%);
 }
 .button1_2 {
-    color: lighten(@brand-danger, 70%);
+    color: #F5D1D0;
 }
 .button1_3 {
-    color: lighten(@brand-danger, 50%);
+    color: #EEB2B0;
 }
 .button1_4 {
-    color: lighten(@brand-danger, 30%);
+    color: #E79290;
 }
 .button1_5 {
-    color: lighten(@brand-danger, 10%);
+    color: #E0736F;
 }
 .button2_1 {
     color: lighten(@brand-warning, 90%);
