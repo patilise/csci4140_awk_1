@@ -51,9 +51,14 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function() {
         console.log('User disconnected');
     });
-    socket.on('register', function (data) {
-        socket.join(data);
-        console.log('register: ' + data);
+    socket.on('register', function (sId, cId) {
+        socket.join(sId);
+        console.log('register: ' + sId + ' ' + cId);
+        for (var roomNum in socket.rooms) {
+            if (socket.rooms[roomNum] != socket.id) {
+                io.to(socket.rooms[roomNum]).emit('register', sId, cId);
+            }
+        }
     });
     socket.on('swing', function (clientId, data, time) {
         console.log('swing: id ' + clientId + ', data ' + data + ', time ' + time);

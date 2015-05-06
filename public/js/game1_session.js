@@ -5,10 +5,15 @@ var startTime = 0;
 var clientScore = [0, 0, 0, 0];
 var winner = 0;
 
-socket.on('register', function(data) {
+socket.on('register', function(sId, cId) {
     console.log('Received register: ' + data);
     sessionId = data;
     clientId = getClientId();
+    if (clientId == 0) { // If at main screen, do work
+        var element = document.getElementById('QR' + cId);
+        if (element !== null)
+            element.parentNode.removeChild(element);
+    }
 });
 socket.on('swing', function(recvClientId, data, time) {
     if (clientId == 0) { // If at main screen, do work
@@ -51,7 +56,7 @@ function registerSession() {
     var sId = getSessionId();
     var cId = getClientId();
     if (sId !== null && cId !== null) {
-        socket.emit('register', sId);
+        socket.emit('register', sId, cId);
     } else {
         console.log('Session ID and/or client ID is null!');
     }
@@ -62,8 +67,11 @@ function startGame_ScreenSide() {
     for (var i = 1; i <= NUM_OF_PLAYERS; ++i)
         for (var j = 1; j <= NUM_OF_LEVELS; ++j)
             document.getElementById('GameButton' + i + '_' + j).setAttribute('class', 'btn btn-lg btn-remote');
-    for (var i = 1; i <= 4; i++)
-        document.getElementById('GameResult' + i).setAttribute('class', 'btn btn-lg btn-remote');
+    for (var i = 1; i <= 4; i++) {
+        var element = document.getElementById('GameResult' + i);
+        element.setAttribute('class', 'btn btn-lg btn-remote');
+        element.textContent = '';
+    }
     startTime = Date.now();
     setTimeout(showResult, 5000);
     console.log("Start game");
