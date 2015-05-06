@@ -3,6 +3,7 @@ var sessionId = null;
 var clientId = null;
 var startTime = [0, 0, 0, 0];
 var clientScore = [0, 0, 0, 0];
+var clientReadyEnd = [false, false, false, false];
 var winner = 0;
 
 socket.on('register', function(sId, cId) {
@@ -21,18 +22,23 @@ socket.on('swing', function(recvClientId, data, time) {
         var clientData = parseFloat(data);
         if (clientTime >= startTime[recvClientId-1] && clientTime <= startTime[recvClientId-1] + 5000 && clientData > clientScore[recvClientId-1]) {
             clientScore[recvClientId-1] = data;
-            if (data >= 10 && clientTime - startTime[recvClientId-1] > 1000) {
-                startTime[recvClientId-1] = clientTime - 4000;
-                for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
-                    setTimeout(function(i, j) {
-                        return function() {
-                            var button = document.getElementById('GameButton' + j + '_' + i);
-                            if (clientScore[j-1] >= 6 * i)
-                                button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
-                            else
-                                button.setAttribute('class', 'btn btn-lg btn-remote');
-                        };
-                    }(level, recvClientId), 200 * level + 1000);
+            if (data >= 10) {
+                if (clientTime - startTime[recvClientId-1] > 1000) {
+                    startTime[recvClientId-1] = clientTime - 4000;
+                }
+                if (!clientReadyEnd[recvClientId-1]) {
+                    for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
+                        setTimeout(function(i, j) {
+                            return function() {
+                                var button = document.getElementById('GameButton' + j + '_' + i);
+                                if (clientScore[j-1] >= 6 * i)
+                                    button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
+                                else
+                                    button.setAttribute('class', 'btn btn-lg btn-remote');
+                            };
+                        }(level, recvClientId), 200 * level + 1000);
+                    }
+                    clientReadyEnd[recvClientId-1] = true;
                 }
             }
             console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
@@ -90,8 +96,10 @@ function startGame_ScreenSide() {
     }
     document.getElementById('QRGroup').setAttribute('class', 'hidden');
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
-    for (var i = 0; i < NUM_OF_PLAYERS; ++i)
+    for (var i = 0; i < NUM_OF_PLAYERS; ++i) {
         startTime[i] = Date.now();
+        clientReadyEnd[i] = false;
+    }
     setTimeout(showResult, 6000);
     console.log("Start game");
 }
