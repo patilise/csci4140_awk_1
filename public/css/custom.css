@@ -5,6 +5,9 @@
 hr {
     margin-top: 10px;
 }
+.form-group {
+    margin-bottom: 0px;
+}
 
 .button1_1 {background-color: #F1C1C0;}
 .button1_2 {background-color: #EEB2B0;}
