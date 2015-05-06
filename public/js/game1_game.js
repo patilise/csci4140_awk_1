@@ -1,5 +1,5 @@
 ﻿var MIN_ACCE = 1;
-var NUM_OF_LEVELS = 10;
+var NUM_OF_LEVELS = 12;
 var NUM_OF_PLAYERS = 4;
 function showResult() {
     for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
