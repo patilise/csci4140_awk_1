@@ -1,6 +1,7 @@
 ﻿var MIN_ACCE = 1;
 var NUM_OF_LEVELS = 12;
 var NUM_OF_PLAYERS = 4;
+
 function showResult() {
     var localClientScore = [0,0,0,0];
     for (var i = 0; i < NUM_OF_PLAYERS; ++i)
@@ -40,7 +41,7 @@ function showResult() {
                 element.textContent = 'LOSE';
             }
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
-    }, 500*(localClientScore[winner] / 6 + 1));
+    }, 500 * (localClientScore[winner] / 6 + 1));
     console.log('Set result timeout functions');
 }
 

@@ -1,7 +1,7 @@
 ﻿var socket = io('ws://' + window.location.hostname + ':8000/');
 var sessionId = null;
 var clientId = null;
-var startTime = 0;
+var startTime = [0, 0, 0, 0];
 var clientScore = [0, 0, 0, 0];
 var winner = 0;
 
@@ -19,8 +19,10 @@ socket.on('swing', function(recvClientId, data, time) {
     if (clientId == 0) { // If at main screen, do work
         var clientTime = parseInt(time);
         var clientData = parseFloat(data);
-        if (clientTime >= startTime && clientTime <= startTime + 5000 && clientData > clientScore[recvClientId-1]) {
+        if (clientTime >= startTime[recvClientId-1] && clientTime <= startTime[recvClientId-1] + 5000 && clientData > clientScore[recvClientId-1]) {
             clientScore[recvClientId-1] = data;
+            if (data >= 10 && clientTime - startTime[recvClientId-1} > 1000)
+                startTime[recvClientId-1] = clientTime + 1000;
             console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
         } else {
             console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
@@ -76,7 +78,8 @@ function startGame_ScreenSide() {
     }
     document.getElementById('QRGroup').setAttribute('class', 'hidden');
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
-    startTime = Date.now();
+    for (var i = 0; i < NUM_OF_PLAYERS; ++i)
+        startTime[recvClientId-1] = Date.now();
     setTimeout(showResult, 6000);
     console.log("Start game");
 }
