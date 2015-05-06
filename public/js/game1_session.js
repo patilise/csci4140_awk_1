@@ -74,7 +74,7 @@ function startGame_ScreenSide() {
         element.textContent = '';
     }
     startTime = Date.now();
-    setTimeout(showResult, 5000);
+    setTimeout(showResult, 6000);
     console.log("Start game");
 }
 

@@ -16,7 +16,7 @@ function showResult() {
                         button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
                 }
             };
-        }(), 1000*level);
+        }(), 500*level);
     }
     
     setTimeout(function() {
