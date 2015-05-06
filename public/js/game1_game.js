@@ -30,12 +30,13 @@ function showResult() {
             if (clientScore[i] == clientScore[winner]) {
                 var element = document.getElementById('GameResult' + (i+1));
                 element.setAttribute('class', 'btn btn-lg btn-remote btn-success');
-                element.textContent = 'Winner';
+                element.textContent = 'WIN';
             } else {
                 var element = document.getElementById('GameResult' + (i+1));
-                element.setAttribute('class', 'btn btn-lg btn-remote');
+                element.setAttribute('class', 'btn btn-lg btn-remote btn-danger');
+                element.textContent = 'LOSE';
             }
-    }, 1000*(NUM_OF_LEVELS + 1));
+    }, 800*(NUM_OF_LEVELS + 1));
     console.log('Set result timeout functions');
 }
 
