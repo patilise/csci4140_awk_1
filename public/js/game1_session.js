@@ -15,7 +15,7 @@ socket.on('swing', function(recvClientId, data, time) {
         var clientTime = parseInt(time);
         var clientData = parseFloat(data);
         if (clientTime >= startTime && clientTime <= startTime + 5000 && clientData > clientScore[recvClientId]) {
-            clientScore[recvClientId] = data;
+            clientScore[recvClientId-1] = data;
             console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
         } else {
             console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
