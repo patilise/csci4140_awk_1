@@ -1,9 +1,3 @@
-
-@brand-primary: darken(#428bca, 6.5%);
-@brand-success: #5cb85c;
-@brand-info:    #5bc0de;
-@brand-warning: #f0ad4e;
-@brand-danger:  #d9534f;
 .btn-remote {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -13,62 +7,62 @@ hr {
 }
 
 .button1_1 {
-    color: lighten(@brand-danger, 90%);
+    background-color: #FCF1F0;
 }
 .button1_2 {
-    color: #F5D1D0;
+    background-color: #F5D1D0;
 }
 .button1_3 {
-    color: #EEB2B0;
+    background-color: #EEB2B0;
 }
 .button1_4 {
-    color: #E79290;
+    background-color: #E79290;
 }
 .button1_5 {
-    color: #E0736F;
+    background-color: #E0736F;
 }
 .button2_1 {
-    color: lighten(@brand-warning, 90%);
+    background-color: lighten(@brand-warning, 90%);
 }
 .button2_2 {
-    color: lighten(@brand-warning, 70%);
+    background-color: lighten(@brand-warning, 70%);
 }
 .button2_3 {
-    color: lighten(@brand-warning, 50%);
+    background-color: lighten(@brand-warning, 50%);
 }
 .button2_4 {
-    color: lighten(@brand-warning, 30%);
+    background-color: lighten(@brand-warning, 30%);
 }
 .button2_5 {
-    color: lighten(@brand-warning, 10%);
+    background-color: lighten(@brand-warning, 10%);
 }
 .button3_1 {
-    color: lighten(@brand-success, 90%);
+    background-color: lighten(@brand-success, 90%);
 }
 .button3_2 {
-    color: lighten(@brand-success, 70%);
+    background-color: lighten(@brand-success, 70%);
 }
 .button3_3 {
-    color: lighten(@brand-success, 50%);
+    background-color: lighten(@brand-success, 50%);
 }
 .button3_4 {
-    color: lighten(@brand-success, 30%);
+    background-color: lighten(@brand-success, 30%);
 }
 .button3_5 {
-    color: lighten(@brand-success, 10%);
+    background-color: lighten(@brand-success, 10%);
 }
 .button4_1 {
-    color: lighten(@brand-primary, 90%);
+    background-color: lighten(@brand-primary, 90%);
 }
 .button4_2 {
-    color: lighten(@brand-primary, 70%);
+    background-color: lighten(@brand-primary, 70%);
 }
 .button4_3 {
-    color: lighten(@brand-primary, 50%);
+    background-color: lighten(@brand-primary, 50%);
 }
 .button4_4 {
-    color: lighten(@brand-primary, 30%);
+    background-color: lighten(@brand-primary, 30%);
 }
 .button4_5 {
-    color: lighten(@brand-primary, 10%);
+    background-color: lighten(@brand-primary, 10%);
 }
