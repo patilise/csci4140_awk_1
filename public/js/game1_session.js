@@ -79,7 +79,7 @@ function startGame_ScreenSide() {
     document.getElementById('QRGroup').setAttribute('class', 'hidden');
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
     for (var i = 0; i < NUM_OF_PLAYERS; ++i)
-        startTime[recvClientId-1] = Date.now();
+        startTime[i-1] = Date.now();
     setTimeout(showResult, 6000);
     console.log("Start game");
 }
