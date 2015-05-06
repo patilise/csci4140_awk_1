@@ -9,7 +9,10 @@ hr {
     margin-bottom: 0px;
 }
 .btn-purple {background-color: #563D7C;}
-.btn-start {background-color: #347837;}
+.btn-start {
+    background-color: #347837;
+    color: #FFFFFF;
+}
 
 .button1_0 {background-color: #F5D1D0;}
 .button1_1 {background-color: #F1C1C0;}
