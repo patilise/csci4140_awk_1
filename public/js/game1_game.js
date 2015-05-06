@@ -6,31 +6,15 @@ function showResult() {
     var localClientScore = [0,0,0,0];
     for (var i = 0; i < NUM_OF_PLAYERS; ++i)
         localClientScore[i] = clientScore[i];
-    for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
-        setTimeout(function() {
-            var i = level;
-            return function() {
-                console.log('Result step ' + i);
-                button = [];
-                for (var j = 1; j <= NUM_OF_PLAYERS; ++j) {
-                    button[j-1] = document.getElementById('GameButton' + j + '_' + i);
-                    if (localClientScore[j-1] >= 6 * i)
-                        button[j-1].setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
-                    else
-                        button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
-                }
-            };
-        }(), 200*level);
-    }
     
     winner = 0;
-    for (var i = 1; i <= 3; i++)
+    for (var i = 1; i <= NUM_OF_PLAYERS-1; i++)
         if (localClientScore[i] > localClientScore[winner])
             winner = i;
     setTimeout(function() {
-        for (var i = 1; i <= 4; i++)
+        for (var i = 1; i <= NUM_OF_PLAYERS; i++)
             document.getElementById('GameResult' + i).setAttribute('class', 'btn btn-lg btn-remote');
-        for (var i = 0; i <= 3; i++)
+        for (var i = 0; i <= NUM_OF_PLAYERS-1; i++)
             if (localClientScore[i] == localClientScore[winner]) {
                 var element = document.getElementById('GameResult' + (i+1));
                 element.setAttribute('class', 'btn btn-lg btn-remote btn-success');

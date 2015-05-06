@@ -21,8 +21,22 @@ socket.on('swing', function(recvClientId, data, time) {
         var clientData = parseFloat(data);
         if (clientTime >= startTime[recvClientId-1] && clientTime <= startTime[recvClientId-1] + 5000 && clientData > clientScore[recvClientId-1]) {
             clientScore[recvClientId-1] = data;
-            if (data >= 10 && clientTime - startTime[recvClientId-1] > 1000)
+            if (data >= 10 && clientTime - startTime[recvClientId-1] > 1000) {
                 startTime[recvClientId-1] = clientTime - 4000;
+                for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
+                    setTimeout(function() {
+                        var i = level;
+                        var j = recvClientId;
+                        return function() {
+                            var button = document.getElementById('GameButton' + j + '_' + i);
+                            if (localClientScore[j-1] >= 6 * i)
+                                button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
+                            else
+                                button.setAttribute('class', 'btn btn-lg btn-remote');
+                        };
+                    }(), 200 * level + 1000);
+                }
+            }
             console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
         } else {
             console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
