@@ -57,6 +57,7 @@ function registerSession() {
     var cId = getClientId();
     if (sId !== null && cId !== null) {
         socket.emit('register', sId, cId);
+        console.log('Sent register message');
     } else {
         console.log('Session ID and/or client ID is null!');
     }
