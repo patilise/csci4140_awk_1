@@ -19,13 +19,13 @@ function showResult() {
         }(), 500*level);
     }
     
+    winner = 0;
+    for (var i = 1; i <= 3; i++)
+        if (clientScore[i] > clientScore[winner])
+            winner = i;
     setTimeout(function() {
-        winner = 0;
         for (var i = 1; i <= 4; i++)
             document.getElementById('GameResult' + i).setAttribute('class', 'btn btn-lg btn-remote');
-        for (var i = 1; i <= 3; i++)
-            if (clientScore[i] > clientScore[winner])
-                winner = i;
         for (var i = 0; i <= 3; i++)
             if (clientScore[i] == clientScore[winner]) {
                 var element = document.getElementById('GameResult' + (i+1));
@@ -37,7 +37,7 @@ function showResult() {
                 element.textContent = 'LOSE';
             }
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
-    }, 800*(NUM_OF_LEVELS + 1));
+    }, 800*(clientScore[winner] / 6 + 1);
     console.log('Set result timeout functions');
 }
 
