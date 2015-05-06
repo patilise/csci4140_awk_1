@@ -9,7 +9,7 @@ function showResult() {
         for (var j = 1; j <= NUM_OF_PLAYERS; ++j) {
             button[j-1] = document.getElementById('GameButton' + j + '_' + i);
             if (clientScore[j-1] >= 10 * i)
-                button[j-1].setAttribute('class', 'btn btn-lg btn-remote btn-danger');
+                button[j-1].setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
             else
                 button[j-1].setAttribute('class', 'btn btn-lg btn-remote');
         }

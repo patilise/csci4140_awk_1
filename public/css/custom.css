@@ -5,3 +5,64 @@
 hr {
     margin-top: 10px;
 }
+
+.button1_1 {
+    color: lighten(@brand-danger, 90%);
+}
+.button1_2 {
+    color: lighten(@brand-danger, 70%);
+}
+.button1_3 {
+    color: lighten(@brand-danger, 50%);
+}
+.button1_4 {
+    color: lighten(@brand-danger, 30%);
+}
+.button1_5 {
+    color: lighten(@brand-danger, 10%);
+}
+.button2_1 {
+    color: lighten(@brand-warning, 90%);
+}
+.button2_2 {
+    color: lighten(@brand-warning, 70%);
+}
+.button2_3 {
+    color: lighten(@brand-warning, 50%);
+}
+.button2_4 {
+    color: lighten(@brand-warning, 30%);
+}
+.button2_5 {
+    color: lighten(@brand-warning, 10%);
+}
+.button3_1 {
+    color: lighten(@brand-success, 90%);
+}
+.button3_2 {
+    color: lighten(@brand-success, 70%);
+}
+.button3_3 {
+    color: lighten(@brand-success, 50%);
+}
+.button3_4 {
+    color: lighten(@brand-success, 30%);
+}
+.button3_5 {
+    color: lighten(@brand-success, 10%);
+}
+.button4_1 {
+    color: lighten(@brand-primary, 90%);
+}
+.button4_2 {
+    color: lighten(@brand-primary, 70%);
+}
+.button4_3 {
+    color: lighten(@brand-primary, 50%);
+}
+.button4_4 {
+    color: lighten(@brand-primary, 30%);
+}
+.button4_5 {
+    color: lighten(@brand-primary, 10%);
+}
