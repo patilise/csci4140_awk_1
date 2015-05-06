@@ -28,9 +28,12 @@ function showResult() {
                 winner = i;
         for (var i = 0; i <= 3; i++)
             if (clientScore[i] == clientScore[winner]) {
-                element = document.getElementById('GameResult' + (i+1));
+                var element = document.getElementById('GameResult' + (i+1));
                 element.setAttribute('class', 'btn btn-lg btn-remote btn-success');
                 element.textContent = 'Winner';
+            } else {
+                var element = document.getElementById('GameResult' + (i+1));
+                element.setAttribute('class', 'btn btn-lg btn-remote');
             }
     }, 1000*(NUM_OF_LEVELS + 1));
     console.log('Set result timeout functions');

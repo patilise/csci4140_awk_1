@@ -80,9 +80,9 @@ function startGame_ScreenSide() {
 }
 
 function init() {
-    registerSession();
     sessionId = getSessionId();
     clientId = getClientId();
+    registerSession();
     if (clientId != 0) {
         if ((window.DeviceMotionEvent) || ('listenForDeviceMovement' in window)) {
             window.addEventListener('devicemotion', deviceMotionHandler, false);
