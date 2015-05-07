@@ -23,9 +23,9 @@ socket.on('swing', function(recvClientId, data, time) {
     var clientTime = parseInt(time);
     var clientData = parseFloat(data);
     if (clientData > clientScore[recvClientId-1]) {
-        console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
         if (startTime == 0) {
             clientScore[recvClientId-1] = data;
+            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
             
             if (data < 10) return;
             
@@ -45,6 +45,7 @@ socket.on('swing', function(recvClientId, data, time) {
             }
         } else if (startTime != 0 && clientTime >= startTime[recvClientId-1] && clientTime <= startTime[recvClientId-1] + 1000) {
             clientScore[recvClientId-1] = data;
+            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
         }
     } else {
         console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
@@ -103,7 +104,6 @@ function startGame_ScreenSide() {
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
     for (var i = 0; i < NUM_OF_PLAYERS; ++i) {
         startTime[i] = Date.now();
-        clientReadyEnd[i] = false;
     }
     document.getElementById('SwingText').setAttribute('class', 'txt-swing');
     setTimeout(showResult, 6000);
