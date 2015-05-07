@@ -35,8 +35,8 @@ socket.on('swing', function(recvClientId, data, time) {
             if (clientExists[i] && endTime[i] === 0)
                 ++numOfPeopleAlive;
         }
-        if (numOfPeopleAlive == 1) {
-            setTimeOut(showResults, 1000);
+        if (numOfPeopleAlive === 0) {
+            setTimeout(showResults, 1000);
         }
     }
 });
@@ -114,7 +114,7 @@ function init() {
             console.log('Not supported on your device or browser.  Sorry.');
         }
     }
-    setTimeout(function() {sendSwing(-1);}, 1000);
+    sendSwing(-1);
 }
 
 window.addEventListener('load', init);
