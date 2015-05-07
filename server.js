@@ -2,7 +2,6 @@
 var path = require('path');
 var http = require('http');
 var app = express();
-var basicAuth = require('basic-auth-connect');
 
 var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8000;
 var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
@@ -13,7 +12,6 @@ var server = app.listen(server_port, server_ip_address, function () {
 });
 
 var io = require('socket.io')(server);
-app.use(basicAuth('threeriders', 'awk'));
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use('/favicons', express.static(path.join(__dirname, 'public', 'favicons')));
 app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts')));
