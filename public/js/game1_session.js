@@ -3,8 +3,8 @@ var sessionId = null;
 var clientId = null;
 var startTime = [0, 0, 0, 0];
 var clientScore = [0, 0, 0, 0];
-var clientReadyEnd = [false, false, false, false];
 var winner = 0;
+var isPlaying = false;
 
 socket.on('register', function(sId, cId) {
     console.log('Received register: ' + sId + ' ' + cId);
@@ -17,36 +17,37 @@ socket.on('register', function(sId, cId) {
     }
 });
 socket.on('swing', function(recvClientId, data, time) {
-    if (clientId == 0) { // If at main screen, do work
-        var clientTime = parseInt(time);
-        var clientData = parseFloat(data);
-        if (clientTime >= startTime[recvClientId-1] && clientTime <= startTime[recvClientId-1] + 5000 && clientData > clientScore[recvClientId-1]) {
+    if (!isPlaying) return;
+    if (clientId != 0) return;
+    
+    var clientTime = parseInt(time);
+    var clientData = parseFloat(data);
+    if (clientData > clientScore[recvClientId-1]) {
+        console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
+        if (startTime == 0) {
             clientScore[recvClientId-1] = data;
-            if (data >= 10) {
-                if (clientTime - startTime[recvClientId-1] > 1000) {
-                    startTime[recvClientId-1] = clientTime - 4000;
-                }
-                if (!clientReadyEnd[recvClientId-1]) {
-                    document.getElementById('GameButtons').setAttribute('class', '');
-                    for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
-                        setTimeout(function(i, j) {
-                            return function() {
-                                var button = document.getElementById('GameButton' + j + '_' + i);
-                                if (clientScore[j-1] >= 6 * i)
-                                    button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
-                                else
-                                    button.setAttribute('class', 'btn btn-lg btn-remote');
-                                document.getElementById('GameResult' + j).textContent = '(Score: ' + clientScore[j-1] + ')';
-                            };
-                        }(level, recvClientId), 200 * level + 1000);
-                    }
-                    clientReadyEnd[recvClientId-1] = true;
-                }
+            
+            if (data < 10) return;
+            
+            startTime[recvClientId-1] = clientTime;
+            document.getElementById('GameButtons').setAttribute('class', '');
+            for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
+                setTimeout(function(i, j) {
+                    return function() {
+                        var button = document.getElementById('GameButton' + j + '_' + i);
+                        if (clientScore[j-1] >= 6 * i)
+                            button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
+                        else
+                            button.setAttribute('class', 'btn btn-lg btn-remote');
+                        document.getElementById('GameResult' + j).textContent = '(Score: ' + clientScore[j-1] + ')';
+                    };
+                }(level, recvClientId), 200 * level + 1000);
             }
-            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
-        } else {
-            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
+        } else if (startTime != 0 && clientTime >= startTime[recvClientId-1] && clientTime <= startTime[recvClientId-1] + 1000) {
+            clientScore[recvClientId-1] = data;
         }
+    } else {
+        console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
     }
 });
 
@@ -86,6 +87,7 @@ function registerSession() {
 }
 
 function startGame_ScreenSide() {
+    isPlaying = true;
     clientScore = [0, 0, 0, 0];
     document.getElementById('GameColumn').setAttribute('class', 'col-12');
     document.getElementById('GameButtons').setAttribute('class', 'hidden');

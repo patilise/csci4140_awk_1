@@ -3,6 +3,7 @@ var NUM_OF_LEVELS = 12;
 var NUM_OF_PLAYERS = 4;
 
 function showResult() {
+    isPlaying = false;
     var localClientScore = [0,0,0,0];
     for (var i = 0; i < NUM_OF_PLAYERS; ++i)
         localClientScore[i] = clientScore[i];
