@@ -40,11 +40,13 @@ function onPlayerStateChange(event) {
 }
 
 function destroyPlayer() {
-    player.destroy();
-    player = null;
-    var emptyPlayer = document.createElement('div');
-    emptyPlayer.setAttribute('id', 'player');
-    document.getElementById('youtubePanel').appendChild(emptyPlayer);
+    if (player !== null) {
+        player.destroy();
+        player = null;
+        var emptyPlayer = document.createElement('div');
+        emptyPlayer.setAttribute('id', 'player');
+        document.getElementById('youtubePanel').appendChild(emptyPlayer);
+    }
 }
 
 function random(min, max) {
