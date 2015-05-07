@@ -101,6 +101,7 @@ function startGame_ScreenSide() {
         startTime[i] = Date.now();
         clientReadyEnd[i] = false;
     }
+    document.getElementById('SwingText').setAttribute('class', 'txt-swing');
     setTimeout(showResult, 6000);
     console.log("Start game");
 }

@@ -13,6 +13,10 @@ hr {
     background-color: #347837;
     color: #FFFFFF;
 }
+.txt-swing{
+    font-size: 88px;
+    text-align: center;
+}
 
 .button1_0 {background-color: #F5D1D0;}
 .button1_1 {background-color: #F1C1C0;}

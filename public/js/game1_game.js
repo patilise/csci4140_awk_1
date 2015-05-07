@@ -31,6 +31,8 @@ function showResult() {
             }
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
     }, 500 * (localClientScore[winner] / 6 + 1));
+    
+    document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
     console.log('Set result timeout functions');
 }
 
