@@ -27,6 +27,8 @@ socket.on('swing', function(recvClientId, data, time) {
                     startTime[recvClientId-1] = clientTime - 4000;
                 }
                 if (!clientReadyEnd[recvClientId-1]) {
+                    document.getElementById('GameButtons').setAttribute('class', '');
+                    document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
                     for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
                         setTimeout(function(i, j) {
                             return function() {
@@ -86,7 +88,7 @@ function registerSession() {
 
 function startGame_ScreenSide() {
     clientScore = [0, 0, 0, 0];
-    document.getElementById('GameButtons').setAttribute('class', 'panel-body');
+    document.getElementById('GameButtons').setAttribute('class', 'hidden');
     for (var i = 1; i <= NUM_OF_PLAYERS; ++i)
         for (var j = 0; j <= NUM_OF_LEVELS; ++j)
             document.getElementById('GameButton' + i + '_' + j).setAttribute('class', 'btn btn-lg btn-remote');

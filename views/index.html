@@ -39,14 +39,16 @@
                     <div class="hidden-md hidden-lg btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-purple" role="button" id="QRButton4_small"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/4") + "\" id=\"QR4\"/>");</script></button></div>
                 </div>
             </div>
+            <div class="form-group" id="StartGroup">
+                <div class="btn-group btn-group-justified" role="group">
+                    <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-start" role="button" id="StartButton" onclick="startGame_ScreenSide();">Start</button></div>
+                </div>
+            </div>
+            </div>
+            <div class="col-12">
             <div class="panel panel-danger" id="GamePanel">
                 <div class="panel-heading"><h4 class="panel-title">Game</h4></div>
                 <div class="panel-body">
-                    <div class="form-group" id="StartGroup">
-                        <div class="btn-group btn-group-justified" role="group">
-                            <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-start" role="button" id="StartButton" onclick="startGame_ScreenSide();">Start</button></div>
-                        </div>
-                    </div>
                     <div class="txt-swing hidden" id="SwingText">SWING!<i class="fa fa-gavel fa-6"></i></div>
                     <div style="margin:15px" id="GameButtons">
                         <div class="form-group">
