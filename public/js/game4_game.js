@@ -10,9 +10,10 @@ function showResult() {
             element.setAttribute('class', 'btn btn-lg btn-remote');
             element.innerHTML = '<i class="fa fa-smile-o"></i>';
         } else if (endTime[i] === 0) {
+            endTime[i] = Date.now();
             var element = document.getElementById('GameResult' + (i+1));
             element.setAttribute('class', 'btn btn-lg btn-remote btn-success');
-            element.textContent = 'ALIVE (' + 10 + ' seconds)';
+            element.textContent = 'ALIVE (' + round((endTime[i] - startTime)/1000) + ' seconds)';
         } else {
             var element = document.getElementById('GameResult' + (i+1));
             element.setAttribute('class', 'btn btn-lg btn-remote btn-danger');
