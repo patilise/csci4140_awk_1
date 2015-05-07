@@ -31,6 +31,7 @@ function onPlayerReady(event) {
 function onPlayerStateChange(event) {
     switch (event.data) {
         case YT.PlayerState.ENDED:
+            showResult();
             break;
     }
 }

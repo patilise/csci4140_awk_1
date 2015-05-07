@@ -28,9 +28,12 @@ function showResult() {
 }
 
 function deviceMotionHandler(eventData) {
+    var acceX = eventData.acceleration.x;
+    var acceY = eventData.acceleration.y;
     var acceZ = eventData.acceleration.z;
-    if (acceZ >= MIN_ACCE) {
-        sendSwing(acceZ);
+    var acce = Math.sqrt(acceX * acceX + acceY * acceY + acceZ * acceZ);
+    if (acce >= MIN_ACCE) {
+        sendSwing(acce);
     }
 }
 
