@@ -13,7 +13,8 @@ socket.on('swing', function(recvClientId, data, time) {
     if (data == -1) {
         if (recvClientId != 0) {
             clientExists[recvClientId-1] = true;
-            document.getElementById('QR' + recvClientId).setAttribute('class', 'hidden');
+            document.getElementById('QR' + recvClientId + '_large').setAttribute('src', '/img/white200x200.png');
+            document.getElementById('QR' + recvClientId + '_small').setAttribute('src', '/img/white100x100.png');
         }
         return;
     }

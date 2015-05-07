@@ -15,6 +15,7 @@ var io = require('socket.io')(server);
 app.use('/css', express.static(path.join(__dirname, 'public', 'css')));
 app.use('/favicons', express.static(path.join(__dirname, 'public', 'favicons')));
 app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts')));
+app.use('/img', express.static(path.join(__dirname, 'public', 'img')));
 app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
 app.get('/session/:roomId/:clientId', function (request, response) {
     if (isNaN(request.params.roomId)) {
