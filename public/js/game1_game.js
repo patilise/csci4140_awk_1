@@ -11,6 +11,7 @@ function showResult() {
     for (var i = 1; i <= NUM_OF_PLAYERS-1; i++)
         if (localClientScore[i] > localClientScore[winner])
             winner = i;
+    
     setTimeout(function() {
         for (var i = 1; i <= NUM_OF_PLAYERS; i++)
             document.getElementById('GameResult' + i).setAttribute('class', 'btn btn-lg btn-remote');
@@ -26,7 +27,7 @@ function showResult() {
             } else {
                 var element = document.getElementById('GameResult' + (i+1));
                 element.setAttribute('class', 'btn btn-lg btn-remote');
-                element.textContent = '&nbsp;';
+                element.textContent = '　　';
             }
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
     }, 500 * (localClientScore[winner] / 6 + 1));
