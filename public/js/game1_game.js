@@ -19,10 +19,14 @@ function showResult() {
                 var element = document.getElementById('GameResult' + (i+1));
                 element.setAttribute('class', 'btn btn-lg btn-remote btn-success');
                 element.textContent = 'WIN ' + element.textContent;
-            } else {
+            } else if (localClientScore[i] != 0) {
                 var element = document.getElementById('GameResult' + (i+1));
                 element.setAttribute('class', 'btn btn-lg btn-remote btn-danger');
                 element.textContent = 'LOSE ' + element.textContent;
+            } else {
+                var element = document.getElementById('GameResult' + (i+1));
+                element.setAttribute('class', 'btn btn-lg btn-remote');
+                element.textContent = '&nbsp;';
             }
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
     }, 500 * (localClientScore[winner] / 6 + 1));
