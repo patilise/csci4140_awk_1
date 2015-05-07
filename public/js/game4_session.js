@@ -83,7 +83,7 @@ function startGame_ScreenSide() {
     document.getElementById('GameResults').setAttribute('class', '');
     
     for (var i = 0; i < NUM_OF_PLAYERS; i++) {
-        var element = document.getElementById('GameResult' + i);
+        var element = document.getElementById('GameResult' + (i+1));
         if (clientExists[i]) {
             element.setAttribute('class', 'btn btn-lg btn-remote btn-warning');
             element.textContent = 'ZEN MODE';
