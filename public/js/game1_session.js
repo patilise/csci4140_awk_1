@@ -12,7 +12,7 @@ socket.on('register', function(sId, cId) {
 });
 socket.on('swing', function(recvClientId, data, time) {
     if (data == -1) {
-        if (clientId != 0 && recvClientId != 0) {
+        if (clientId == 0 && recvClientId != 0) {
             clientExists[recvClientId-1] = true;
             document.getElementById('QR' + recvClientId + '_large').setAttribute('src', '/img/white200x200.png');
             document.getElementById('QR' + recvClientId + '_small').setAttribute('src', '/img/white100x100.png');
