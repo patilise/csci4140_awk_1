@@ -88,6 +88,7 @@ function registerSession() {
 
 function startGame_ScreenSide() {
     clientScore = [0, 0, 0, 0];
+    document.getElementById('GameColumn').setAttribute('class', 'col-12');
     document.getElementById('GameButtons').setAttribute('class', 'hidden');
     for (var i = 1; i <= NUM_OF_PLAYERS; ++i)
         for (var j = 0; j <= NUM_OF_LEVELS; ++j)
