@@ -56,7 +56,7 @@ function random(min, max) {
 function changeVideo() {
     videoNow = random(0, videoList.length - 1);
     
-    if (videoNow == 0) {
+    if (videoNow <= 0) {
         destroyPlayer();
         document.getElementById('MoleImage1').setAttribute('class', 'img-responsive');
         document.getElementById('MoleImage2').setAttribute('class', 'img-responsive');

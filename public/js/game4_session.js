@@ -35,7 +35,7 @@ socket.on('swing', function(recvClientId, data, time) {
             if (clientExists[i] && endTime[i] === 0)
                 ++numOfPeopleAlive;
         }
-        if (numOfPeopleAlive === 0) {
+        if (numOfPeopleAlive <= 1) {
             setTimeout(showResult, 1000);
         }
     }
