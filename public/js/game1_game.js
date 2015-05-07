@@ -1,4 +1,4 @@
-﻿var MIN_ACCE = 1;
+﻿var MIN_ACCE = 6;
 var NUM_OF_LEVELS = 12;
 var NUM_OF_PLAYERS = 4;
 
@@ -39,7 +39,7 @@ function showResult() {
 
 function deviceMotionHandler(eventData) {
     var acceZ = eventData.acceleration.z;
-    if (acceZ > MIN_ACCE) {
+    if (acceZ >= MIN_ACCE) {
         sendSwing(acceZ);
     }
 }
