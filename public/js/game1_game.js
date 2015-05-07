@@ -31,7 +31,7 @@ function showResult() {
             }
         document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
-        document.getElementById('StartGroup').textContent = 'Restart';
+        document.getElementById('StartButton').textContent = 'Restart';
     }, 500 * (localClientScore[winner] / 6 + 1));
     
     console.log('Set result timeout functions');
