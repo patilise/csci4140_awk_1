@@ -2,7 +2,7 @@
 var sessionId = null;
 var clientId = null;
 var endTime = [0, 0, 0, 0];
-var startTime;
+var startTime = 0;
 var clientExists = [false, false, false, false];
 var isPlaying = false;
 
@@ -11,7 +11,8 @@ socket.on('register', function(sId, cId) {
 });
 socket.on('swing', function(recvClientId, data, time) {
     if (data == -1) {
-        clientExists[recvClientId-1] = true;
+        if (recvClientId != 0)
+            clientExists[recvClientId-1] = true;
         return;
     }
     
@@ -20,12 +21,14 @@ socket.on('swing', function(recvClientId, data, time) {
         return;
     }
     
-    var clientTime = parseInt(time);
-    var clientData = parseFloat(data);
     endTime[recvClientId] = Date.now();
     console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
     
-    //TODO: change win/lose button
+    if (recvClientId > 0) {
+        var element = document.getElementById('GameResult' + recvClientId);
+        element.setAttribute('class', 'btn btn-lg btn-remote btn-danger');
+        element.textContent = 'DEAD (' + round((endTime[recvClientId] - startTime)/1000) + ' seconds)';
+    }
 });
 
 function sendSwing(swing) {
@@ -67,7 +70,7 @@ function startGame_ScreenSide() {
     isPlaying = true;
     clientScore = [0, 0, 0, 0];
     document.getElementById('GameColumn').setAttribute('class', 'col-12');
-    document.getElementById('GameButtons').setAttribute('class', 'hidden');
+    document.getElementById('GameResults').setAttribute('class', '');
     
     for (var i = 1; i <= NUM_OF_PLAYERS; i++) {
         var element = document.getElementById('GameResult' + i);
@@ -80,6 +83,7 @@ function startGame_ScreenSide() {
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
     document.getElementById('SwingText').setAttribute('class', 'txt-swing');
     //TODO: Start video
+    startTime = Date.now();
     
     setTimeout(showResult, 10000);
     console.log("Start game");
