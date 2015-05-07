@@ -38,7 +38,7 @@ socket.on('swing', function(recvClientId, data, time) {
                         button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
                     else
                         button.setAttribute('class', 'btn btn-lg btn-remote');
-                    document.getElementById('GameResult' + j).textContent = '(Score: ' + clientScore[j-1] + ')';
+                    document.getElementById('GameResult' + j).textContent = '(Score: ' + round(clientScore[j-1]) + ')';
                 };
             }(level, recvClientId), 200 * level + 1000);
         }
