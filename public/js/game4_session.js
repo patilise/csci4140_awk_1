@@ -36,7 +36,7 @@ socket.on('swing', function(recvClientId, data, time) {
                 ++numOfPeopleAlive;
         }
         if (numOfPeopleAlive === 0) {
-            setTimeout(showResults, 1000);
+            setTimeout(showResult, 1000);
         }
     }
 });
@@ -99,6 +99,7 @@ function startGame_ScreenSide() {
     
     startTime = Date.now();
     
+    document.getElementById('youtubePanel').setAttribute('class', 'embed-responsive embed-responsive-16by9');
     player = getYouTubePlayer();
     console.log("Start game");
 }
