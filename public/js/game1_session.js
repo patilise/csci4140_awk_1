@@ -4,7 +4,6 @@ var clientId = null;
 var startTime = [0, 0, 0, 0];
 var clientScore = [0, 0, 0, 0];
 var winner = 0;
-var isPlaying = false;
 
 socket.on('register', function(sId, cId) {
     console.log('Received register: ' + sId + ' ' + cId);
@@ -17,7 +16,7 @@ socket.on('register', function(sId, cId) {
     }
 });
 socket.on('swing', function(recvClientId, data, time) {
-    if (!isPlaying || clientId != 0) {
+    if (clientId != 0) {
         console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
         return;
     }
@@ -91,7 +90,6 @@ function registerSession() {
 }
 
 function startGame_ScreenSide() {
-    isPlaying = true;
     clientScore = [0, 0, 0, 0];
     document.getElementById('GameColumn').setAttribute('class', 'col-12');
     document.getElementById('GameButtons').setAttribute('class', 'hidden');
