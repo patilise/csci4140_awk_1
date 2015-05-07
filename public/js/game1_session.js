@@ -17,38 +17,41 @@ socket.on('register', function(sId, cId) {
     }
 });
 socket.on('swing', function(recvClientId, data, time) {
-    if (!isPlaying) return;
-    if (clientId != 0) return;
+    if (!isPlaying || clientId != 0) {
+        console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
+        return;
+    }
     
     var clientTime = parseInt(time);
     var clientData = parseFloat(data);
-    if (clientData > clientScore[recvClientId-1]) {
-        if (startTime == 0) {
-            clientScore[recvClientId-1] = data;
-            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
-            
-            if (data < 10) return;
-            
-            startTime[recvClientId-1] = clientTime;
-            document.getElementById('GameButtons').setAttribute('class', '');
-            for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
-                setTimeout(function(i, j) {
-                    return function() {
-                        var button = document.getElementById('GameButton' + j + '_' + i);
-                        if (clientScore[j-1] >= 6 * i)
-                            button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
-                        else
-                            button.setAttribute('class', 'btn btn-lg btn-remote');
-                        document.getElementById('GameResult' + j).textContent = '(Score: ' + clientScore[j-1] + ')';
-                    };
-                }(level, recvClientId), 200 * level + 1000);
-            }
-        } else if (startTime != 0 && clientTime >= startTime[recvClientId-1] && clientTime <= startTime[recvClientId-1] + 1000) {
-            clientScore[recvClientId-1] = data;
-            console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
-        }
-    } else {
+    if (clientData <= clientScore[recvClientId-1]) {
         console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
+        return;
+    }
+    
+    if (startTime == 0) {
+        clientScore[recvClientId-1] = data;
+        console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
+        
+        if (data < 10) return;
+        
+        startTime[recvClientId-1] = clientTime;
+        document.getElementById('GameButtons').setAttribute('class', '');
+        for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
+            setTimeout(function(i, j) {
+                return function() {
+                    var button = document.getElementById('GameButton' + j + '_' + i);
+                    if (clientScore[j-1] >= 6 * i)
+                        button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
+                    else
+                        button.setAttribute('class', 'btn btn-lg btn-remote');
+                    document.getElementById('GameResult' + j).textContent = '(Score: ' + clientScore[j-1] + ')';
+                };
+            }(level, recvClientId), 200 * level + 1000);
+        }
+    } else if (startTime != 0 && clientTime >= startTime[recvClientId-1] && clientTime <= startTime[recvClientId-1] + 1000) {
+        clientScore[recvClientId-1] = data;
+        console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
     }
 });
 
@@ -103,7 +106,7 @@ function startGame_ScreenSide() {
     document.getElementById('QRGroup').setAttribute('class', 'hidden');
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
     for (var i = 0; i < NUM_OF_PLAYERS; ++i) {
-        startTime[i] = Date.now();
+        startTime[i] = 0;
     }
     document.getElementById('SwingText').setAttribute('class', 'txt-swing');
     setTimeout(showResult, 6000);
