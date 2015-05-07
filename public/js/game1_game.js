@@ -3,6 +3,15 @@ var NUM_OF_LEVELS = 12;
 var NUM_OF_PLAYERS = 4;
 
 function showResult() {
+    var noScore = true;
+    for (var i = 0; i < NUM_OF_PLAYERS; ++i)
+        if (clientScore[i] != 0)
+            noScore = false;
+    if (noScore) {
+        setTimeout(showResult, 1000);
+        return;
+    }
+    
     isPlaying = false;
     var localClientScore = [0,0,0,0];
     for (var i = 0; i < NUM_OF_PLAYERS; ++i)
