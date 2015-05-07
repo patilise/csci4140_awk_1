@@ -4,19 +4,13 @@ var clientId = null;
 var startTime = [0, 0, 0, 0];
 var clientScore = [0, 0, 0, 0];
 var winner = 0;
+var isPlaying = false;
 
 socket.on('register', function(sId, cId) {
     console.log('Received register: ' + sId + ' ' + cId);
-    sessionId = sId;
-    clientId = getClientId();
-    if (clientId == 0) { // If at main screen, do work
-        var element = document.getElementById('QR' + cId);
-        if (element !== null)
-            element.parentNode.removeChild(element);
-    }
 });
 socket.on('swing', function(recvClientId, data, time) {
-    if (clientId != 0) {
+    if (!isPlaying || clientId != 0) {
         console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
         return;
     }
@@ -83,13 +77,14 @@ function registerSession() {
     var cId = getClientId();
     if (sId !== null && cId !== null) {
         socket.emit('register', sId, cId);
-        console.log('Sent register message');
+        console.log('Sent register message' + sId + ' ' + cId);
     } else {
         console.log('Session ID and/or client ID is null!');
     }
 }
 
 function startGame_ScreenSide() {
+    isPlaying = true;
     clientScore = [0, 0, 0, 0];
     document.getElementById('GameColumn').setAttribute('class', 'col-12');
     document.getElementById('GameButtons').setAttribute('class', 'hidden');
