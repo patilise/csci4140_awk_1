@@ -11,8 +11,10 @@ socket.on('register', function(sId, cId) {
 });
 socket.on('swing', function(recvClientId, data, time) {
     if (data == -1) {
-        if (recvClientId != 0)
+        if (recvClientId != 0) {
             clientExists[recvClientId-1] = true;
+            document.getElementById('QR' + recvClientId).setAttribute('class', 'hidden');
+        }
         return;
     }
     
