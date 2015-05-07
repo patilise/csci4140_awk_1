@@ -21,13 +21,23 @@ socket.on('swing', function(recvClientId, data, time) {
         return;
     }
     
-    endTime[recvClientId] = Date.now();
     console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
     
-    if (recvClientId > 0) {
+    if (recvClientId > 0 && endTime[recvClientId-1] > 0) {
+        endTime[recvClientId-1] = Date.now();
+        
         var element = document.getElementById('GameResult' + recvClientId);
         element.setAttribute('class', 'btn btn-lg btn-remote btn-danger');
         element.textContent = 'DEAD (' + round((endTime[recvClientId] - startTime)/1000) + ' seconds)';
+        
+        var numOfPeopleAlive = 0;
+        for (var i = 0; i < NUM_OF_PLAYERS; ++i) {
+            if (clientExists[i] && endTime[i] === 0)
+                ++numOfPeopleAlive;
+        }
+        if (numOfPeopleAlive == 1) {
+            setTimeOut(showResults, 1000);
+        }
     }
 });
 
@@ -75,7 +85,7 @@ function startGame_ScreenSide() {
     for (var i = 1; i <= NUM_OF_PLAYERS; i++) {
         var element = document.getElementById('GameResult' + i);
         element.setAttribute('class', 'btn btn-lg btn-remote btn-warning');
-        element.textContent = 'ZEN';
+        element.textContent = 'ZEN MODE';
         
         endTime[i-1] = 0;
     }
@@ -83,9 +93,9 @@ function startGame_ScreenSide() {
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
     document.getElementById('SwingText').setAttribute('class', 'txt-swing');
     //TODO: Start video
+    
     startTime = Date.now();
     
-    setTimeout(showResult, 10000);
     console.log("Start game");
 }
 
@@ -100,7 +110,7 @@ function init() {
             console.log('Not supported on your device or browser.  Sorry.');
         }
     }
-    sendSwing(-1);
+    setTimeout(function() {sendSwing(-1);}, 1000);
 }
 
 window.addEventListener('load', init);
