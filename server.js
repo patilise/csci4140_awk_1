@@ -22,7 +22,7 @@ app.get('/session/:roomId/:clientId', function (request, response) {
     } else {
         var roomIdInt = parseInt(request.params.roomId);
         var clientId = parseInt(request.params.clientId);
-        if (roomIdInt >= 1 && roomIdInt <= 10000) {
+        if (roomIdInt >= 1000 && roomIdInt <= 10000) {
             if (clientId == 0)
                 response.sendFile(__dirname + '/views/index.html');
             else if (clientId <= 4)
@@ -40,7 +40,7 @@ app.get('/session_dontmove/:roomId/:clientId', function (request, response) {
     } else {
         var roomIdInt = parseInt(request.params.roomId);
         var clientId = parseInt(request.params.clientId);
-        if (roomIdInt >= 1 && roomIdInt <= 10000) {
+        if (roomIdInt >= 1000 && roomIdInt <= 10000) {
             if (clientId == 0)
                 response.sendFile(__dirname + '/views/dontmove.html');
             else if (clientId <= 4)

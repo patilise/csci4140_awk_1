@@ -6,7 +6,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // Define global variables
 var player = null;
-var videoList = ['SHOW_MOLE', 'LW4m4NGaWqE'];
+var videoList = ['SHOW_MOLE', 'LW4m4NGaWqE', '1Tuv0ZGPPUA', '9bZkp7q19f0', 'rKbZS90zNho', '4ViwSeuWVfE', 'WGQhIHcfzsw', 'IJNR2EpS0jw'];
 
 function getYouTubePlayer() {
     if (videoNow === 0)
@@ -54,7 +54,7 @@ function random(min, max) {
 }
 
 function changeVideo() {
-    videoNow = random(0, 10);
+    videoNow = random(0, videoList.length - 1);
     
     if (videoNow == 0) {
         destroyPlayer();
