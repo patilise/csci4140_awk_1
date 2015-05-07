@@ -3,6 +3,7 @@ var sessionId = null;
 var clientId = null;
 var startTime = [0, 0, 0, 0];
 var clientScore = [0, 0, 0, 0];
+var clientExists = [false, false, false, false];
 var winner = 0;
 var isPlaying = false;
 
@@ -10,6 +11,15 @@ socket.on('register', function(sId, cId) {
     console.log('Received register: ' + sId + ' ' + cId);
 });
 socket.on('swing', function(recvClientId, data, time) {
+    if (data == -1) {
+        if (clientId != 0 && recvClientId != 0) {
+            clientExists[recvClientId-1] = true;
+            document.getElementById('QR' + recvClientId + '_large').setAttribute('src', '/img/white200x200.png');
+            document.getElementById('QR' + recvClientId + '_small').setAttribute('src', '/img/white100x100.png');
+        }
+        return;
+    }
+    
     if (!isPlaying || clientId != 0) {
         console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time + ', discarded');
         return;
@@ -116,6 +126,7 @@ function init() {
         } else {
             console.log('Not supported on your device or browser.  Sorry.');
         }
+        sendSwing(-1);
     }
 }
 
