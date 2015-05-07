@@ -6,13 +6,16 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // Define global variables
 var player = null;
+var videoList = ['SHOW_MOLE', 'LW4m4NGaWqE'];
 
 function getYouTubePlayer() {
+    if (videoNow === 0)
+        return null;
     return new YT.Player('player', {
         height : '360',
         width : '640',
         playerVars: {'controls' : 0},
-        videoId: 'LW4m4NGaWqE', //TODO: Find a better video
+        videoId: videoList[videoNow],
         events : {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -42,4 +45,26 @@ function destroyPlayer() {
     var emptyPlayer = document.createElement('div');
     emptyPlayer.setAttribute('id', 'player');
     document.getElementById('youtubePanel').appendChild(emptyPlayer);
+}
+
+function random(min, max) {
+    return Math.floor((Math.random() * max) + min); 
+}
+
+function changeVideo() {
+    videoNow = random(0, 10);
+    
+    if (videoNow == 0) {
+        destroyPlayer();
+        document.getElementById('MoleImage1').setAttribute('class', 'img-responsive');
+        document.getElementById('MoleImage2').setAttribute('class', 'img-responsive');
+    
+        setTimeout(changeVideo, 7500);
+    } else {
+        destroyPlayer();
+        document.getElementById('MoleImage1').setAttribute('class', 'img-responsive hidden');
+        document.getElementById('MoleImage2').setAttribute('class', 'img-responsive hidden');
+        destroyPlayer();document.getElementById('youtubePanel').setAttribute('class', 'embed-responsive embed-responsive-16by9');
+        player = getYouTubePlayer();
+    }
 }

@@ -23,6 +23,8 @@ function showResult() {
     document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
     document.getElementById('StartGroup').setAttribute('class', 'form-group');
     document.getElementById('youtubePanel').setAttribute('class', 'embed-responsive embed-responsive-16by9 hidden');
+    document.getElementById('MoleImage1').setAttribute('class', 'img-responsive hidden');
+    document.getElementById('MoleImage2').setAttribute('class', 'img-responsive hidden');
     document.getElementById('StartButton').textContent = 'Restart';
     console.log('Finished showResult()');
 }

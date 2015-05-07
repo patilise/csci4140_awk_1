@@ -5,7 +5,7 @@ var endTime = [0, 0, 0, 0];
 var startTime = 0;
 var clientExists = [false, false, false, false];
 var isPlaying = false;
-
+var videoNow = -1;
 socket.on('register', function(sId, cId) {
     console.log('Received register: ' + sId + ' ' + cId);
 });
@@ -99,8 +99,8 @@ function startGame_ScreenSide() {
     
     startTime = Date.now();
     
-    document.getElementById('youtubePanel').setAttribute('class', 'embed-responsive embed-responsive-16by9');
-    player = getYouTubePlayer();
+    changeVideo();
+    
     console.log("Start game");
 }
 
