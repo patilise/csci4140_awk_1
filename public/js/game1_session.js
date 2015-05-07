@@ -35,6 +35,7 @@ socket.on('swing', function(recvClientId, data, time) {
                                     button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
                                 else
                                     button.setAttribute('class', 'btn btn-lg btn-remote');
+                                button.textContent = '(Score: ' + clientScore[j-1] + ')';
                             };
                         }(level, recvClientId), 200 * level + 1000);
                     }
