@@ -27,7 +27,7 @@ function showResult() {
             } else {
                 var element = document.getElementById('GameResult' + (i+1));
                 element.setAttribute('class', 'btn btn-lg btn-remote');
-                element.textContent = '　　';
+                element.innerHTML = '<i class="fa fa-gavel fa-2"></i>';
             }
         document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
