@@ -22,7 +22,7 @@ socket.on('swing', function(recvClientId, data, time) {
         return;
     }
     
-    if (startTime == 0) {
+    if (startTime[recvClientId-1] == 0) {
         clientScore[recvClientId-1] = data;
         console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
         
@@ -77,7 +77,7 @@ function registerSession() {
     var cId = getClientId();
     if (sId !== null && cId !== null) {
         socket.emit('register', sId, cId);
-        console.log('Sent register message' + sId + ' ' + cId);
+        console.log('Sent register message: ' + sId + ' ' + cId);
     } else {
         console.log('Session ID and/or client ID is null!');
     }
