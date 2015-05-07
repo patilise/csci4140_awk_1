@@ -36,6 +36,24 @@ app.get('/session/:roomId/:clientId', function (request, response) {
         }
     } 
 });
+app.get('/session_dontmove/:roomId/:clientId', function (request, response) {
+    if (isNaN(request.params.roomId)) {
+        response.redirect('/');
+    } else {
+        var roomIdInt = parseInt(request.params.roomId);
+        var clientId = parseInt(request.params.clientId);
+        if (roomIdInt >= 1 && roomIdInt <= 10000) {
+            if (clientId == 0)
+                response.sendFile(__dirname + '/views/dontmove.html');
+            else if (clientId <= 4)
+                response.sendFile(__dirname + '/views/dontmove_client.html');
+            else
+                response.redirect('/');
+        } else {
+            response.redirect('/');
+        }
+    } 
+});
 app.get('/', function (request, response) {
     var randomRoomNum = Math.floor((Math.random() * 10000) + 1).toString();
     var roomList = io.sockets.adapter.rooms;
