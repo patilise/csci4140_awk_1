@@ -28,7 +28,7 @@ socket.on('swing', function(recvClientId, data, time) {
         
         var element = document.getElementById('GameResult' + recvClientId);
         element.setAttribute('class', 'btn btn-lg btn-remote btn-danger');
-        element.textContent = 'DEAD (' + round((endTime[recvClientId] - startTime)/1000) + ' seconds)';
+        element.textContent = 'DEAD (' + round((endTime[recvClientId-1] - startTime)/1000) + ' seconds)';
         
         var numOfPeopleAlive = 0;
         for (var i = 0; i < NUM_OF_PLAYERS; ++i) {
@@ -82,12 +82,16 @@ function startGame_ScreenSide() {
     document.getElementById('GameColumn').setAttribute('class', 'col-12');
     document.getElementById('GameResults').setAttribute('class', '');
     
-    for (var i = 1; i <= NUM_OF_PLAYERS; i++) {
+    for (var i = 0; i < NUM_OF_PLAYERS; i++) {
         var element = document.getElementById('GameResult' + i);
-        element.setAttribute('class', 'btn btn-lg btn-remote btn-warning');
-        element.textContent = 'ZEN MODE';
-        
-        endTime[i-1] = 0;
+        if (clientExists[i]) {
+            element.setAttribute('class', 'btn btn-lg btn-remote btn-warning');
+            element.textContent = 'ZEN MODE';
+        } else {
+            element.setAttribute('class', 'btn btn-lg btn-remote');
+            element.innerHTML = '<i class="fa fa-smile-o"></i>';
+        }
+        endTime[i] = 0;
     }
     document.getElementById('QRGroup').setAttribute('class', 'hidden');
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');

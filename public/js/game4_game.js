@@ -3,7 +3,7 @@ var NUM_OF_PLAYERS = 4;
 
 function showResult() {
     isPlaying = false;
-    
+    destroyPlayer();
     for (var i = 0; i < NUM_OF_PLAYERS; ++i) {
         if (!clientExists[i]) {
             var element = document.getElementById('GameResult' + (i+1));
