@@ -29,10 +29,11 @@ function showResult() {
                 element.setAttribute('class', 'btn btn-lg btn-remote');
                 element.textContent = '　　';
             }
+        document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
+        document.getElementById('StartGroup').textContent = 'Restart';
     }, 500 * (localClientScore[winner] / 6 + 1));
     
-    document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
     console.log('Set result timeout functions');
 }
 

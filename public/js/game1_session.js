@@ -28,7 +28,6 @@ socket.on('swing', function(recvClientId, data, time) {
                 }
                 if (!clientReadyEnd[recvClientId-1]) {
                     document.getElementById('GameButtons').setAttribute('class', '');
-                    document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
                     for (var level = 0; level <= NUM_OF_LEVELS; ++level) {
                         setTimeout(function(i, j) {
                             return function() {
