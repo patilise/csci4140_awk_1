@@ -23,7 +23,7 @@ socket.on('swing', function(recvClientId, data, time) {
     
     console.log('Received swing: from id ' + recvClientId + ', ' + data + ', at time ' + time);
     
-    if (recvClientId > 0 && endTime[recvClientId-1] > 0) {
+    if (recvClientId > 0 && endTime[recvClientId-1] === 0) {
         endTime[recvClientId-1] = Date.now();
         
         var element = document.getElementById('GameResult' + recvClientId);
@@ -92,10 +92,10 @@ function startGame_ScreenSide() {
     document.getElementById('QRGroup').setAttribute('class', 'hidden');
     document.getElementById('StartGroup').setAttribute('class', 'form-group hidden');
     document.getElementById('SwingText').setAttribute('class', 'txt-swing');
-    //TODO: Start video
     
     startTime = Date.now();
     
+    player = getYouTubePlayer();
     console.log("Start game");
 }
 
