@@ -1,4 +1,4 @@
-﻿var MIN_ACCE = 0.8;
+﻿var MIN_ACCE = 1.1;
 var NUM_OF_PLAYERS = 4;
 
 function showResult() {

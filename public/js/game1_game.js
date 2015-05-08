@@ -1,4 +1,4 @@
-﻿var MIN_ACCE = 6;
+﻿var MIN_ACCE = 7;
 var NUM_OF_LEVELS = 12;
 var NUM_OF_PLAYERS = 4;
 
@@ -42,7 +42,7 @@ function showResult() {
         document.getElementById('SwingText').setAttribute('class', 'txt-swing hidden');
         document.getElementById('StartGroup').setAttribute('class', 'form-group');
         document.getElementById('StartButton').textContent = 'Restart';
-    }, 500 * (localClientScore[winner] / 6 + 1));
+    }, 500 * (localClientScore[winner] / MIN_ACCE + 1));
     
     console.log('Set result timeout functions');
 }
