@@ -44,7 +44,7 @@ socket.on('swing', function(recvClientId, data, time) {
             setTimeout(function(i, j) {
                 return function() {
                     var button = document.getElementById('GameButton' + j + '_' + i);
-                    if (clientScore[j-1] >= 7 * i)
+                    if (clientScore[j-1] >= 9 * i)
                         button.setAttribute('class', 'btn btn-lg btn-remote button' + j + '_' + i);
                     else
                         button.setAttribute('class', 'btn btn-lg btn-remote');

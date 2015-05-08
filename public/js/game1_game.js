@@ -1,4 +1,4 @@
-﻿var MIN_ACCE = 7;
+﻿var MIN_ACCE = 9;
 var NUM_OF_LEVELS = 12;
 var NUM_OF_PLAYERS = 4;
 
