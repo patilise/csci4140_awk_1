@@ -19,7 +19,7 @@
 <body>
 <div class="container">
 <div class="header">
-    <h2>King of the Hammer</h2>
+    <h2>Choose Game</h2>
     <hr />
 </div>
 
@@ -27,137 +27,15 @@
     <div class="col-12">
         <div class="row">
             <div class="col-12">
-            <div class="form-group">
-                <div class="btn-group btn-group-justified" role="group" id="QRGroup">
-                    <div class="hidden-xs hidden-sm btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-danger" role="button" id="QRButton1_large"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/1") + "\" id=\"QR1_large\"/>");</script></button></div>
-                    <div class="hidden-xs hidden-sm btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-warning" role="button" id="QRButton2_large"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/2") + "\" id=\"QR2_large\"/>");</script></button></div>
-                    <div class="hidden-xs hidden-sm btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-primary" role="button" id="QRButton3_large"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/3") + "\" id=\"QR3_large\"/>");</script></button></div>
-                    <div class="hidden-xs hidden-sm btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-purple" role="button" id="QRButton4_large"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/4") + "\" id=\"QR4_large\"/>");</script></button></div>
-                    <div class="hidden-md hidden-lg btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-danger" role="button" id="QRButton1_small"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/1") + "\" id=\"QR1_small\"/>");</script></button></div>
-                    <div class="hidden-md hidden-lg btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-warning" role="button" id="QRButton2_small"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/2") + "\" id=\"QR2_small\"/>");</script></button></div>
-                    <div class="hidden-md hidden-lg btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-primary" role="button" id="QRButton3_small"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/3") + "\" id=\"QR3_small\"/>");</script></button></div>
-                    <div class="hidden-md hidden-lg btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-purple" role="button" id="QRButton4_small"><script type="text/javascript">document.write("<img src=\"https://chart.googleapis.com/chart?cht=qr&chs=100x100&chl=" + encodeURIComponent(location.href.substr(0, location.href.length - 2) + "/4") + "\" id=\"QR4_small\"/>");</script></button></div>
-                </div>
-            </div>
-            <div class="form-group" id="StartGroup">
-                <div class="btn-group btn-group-justified" role="group">
-                    <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote btn-start" role="button" id="StartButton" onclick="startGame_ScreenSide();">Start</button></div>
-                </div>
-            </div>
-            </div>
-            <div class="col-12 hidden" id="GameColumn">
-            <div class="txt-swing hidden" id="SwingText">SWING!<i class="fa fa-gavel fa-6"></i></div>
-            <div style="margin:15px" id="GameButtons">
+            <div class="hidden" style="margin:15px" id="GameResults">
                 <div class="form-group">
                     <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_12"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_12"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_12"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_12"></button></div>
+                        <div class="btn-group" role="group"><a href="./game1"><button type="button" class="btn btn-lg btn-remote btn-success" role="button">King of the Hammer</button></a></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_11"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_11"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_11"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_11"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_10"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_10"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_10"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_10"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_9"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_9"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_9"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_9"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_8"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_8"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_8"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_8"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_7"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_7"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_7"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_7"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_6"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_6"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_6"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_6"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_5"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_5"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_5"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_5"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_4"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_4"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_4"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_4"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_3"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_3"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_3"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_3"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_2"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_2"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_2"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_2"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_1"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_1"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_1"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_1"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton1_0"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton2_0"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton3_0"></button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameButton4_0"></button></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="btn-group btn-group-justified" role="group">
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameResult1"> </button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameResult2"> </button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameResult3"> </button></div>
-                        <div class="btn-group" role="group"><button type="button" class="btn btn-lg btn-remote hidden" role="button" id="GameResult4"> </button></div>
+                        <div class="btn-group" role="group"><a href="./game4"><button type="button" class="btn btn-lg btn-remote btn-success" role="button">Zen</button></a></div>
                     </div>
                 </div>
             </div>
@@ -166,9 +44,5 @@
     </div>
 </div>
 </div>
-
-<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-<script type="text/javascript" src="/js/game1_game.js"></script>
-<script type="text/javascript" src="/js/game1_session.js"></script>
 </body>
 </html>

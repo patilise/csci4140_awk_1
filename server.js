@@ -17,49 +17,60 @@ app.use('/favicons', express.static(path.join(__dirname, 'public', 'favicons')))
 app.use('/fonts', express.static(path.join(__dirname, 'public', 'fonts')));
 app.use('/img', express.static(path.join(__dirname, 'public', 'img')));
 app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
-app.get('/session/:roomId/:clientId', function (request, response) {
+app.get('/game1/:roomId/:clientId', function (request, response) {
     if (isNaN(request.params.roomId)) {
         response.redirect('/');
     } else {
         var roomIdInt = parseInt(request.params.roomId);
         var clientId = parseInt(request.params.clientId);
-        if (roomIdInt >= 1000 && roomIdInt <= 10000) {
+        if (roomIdInt >= 1000 && roomIdInt <= 9999) {
             if (clientId == 0)
-                response.sendFile(__dirname + '/views/index.html');
+                response.sendFile(__dirname + '/views/game1_index.html');
             else if (clientId <= 4)
-                response.sendFile(__dirname + '/views/client.html');
+                response.sendFile(__dirname + '/views/game1_client.html');
             else
-                response.redirect('/');
+                response.redirect('/game1');
         } else {
-            response.redirect('/');
+            response.redirect('/game1');
         }
     } 
 });
-app.get('/session_dontmove/:roomId/:clientId', function (request, response) {
+app.get('/game4/:roomId/:clientId', function (request, response) {
     if (isNaN(request.params.roomId)) {
         response.redirect('/');
     } else {
         var roomIdInt = parseInt(request.params.roomId);
         var clientId = parseInt(request.params.clientId);
-        if (roomIdInt >= 1000 && roomIdInt <= 10000) {
+        if (roomIdInt >= 1000 && roomIdInt <= 9999) {
             if (clientId == 0)
-                response.sendFile(__dirname + '/views/dontmove.html');
+                response.sendFile(__dirname + '/views/game4_index.html');
             else if (clientId <= 4)
-                response.sendFile(__dirname + '/views/dontmove_client.html');
+                response.sendFile(__dirname + '/views/game4_client.html');
             else
-                response.redirect('/');
+                response.redirect('/game4');
         } else {
-            response.redirect('/');
+            response.redirect('/game4');
         }
     } 
 });
-app.get('/', function (request, response) {
-    var randomRoomNum = Math.floor((Math.random() * 10000) + 1).toString();
+app.get('/game1', function (request, response) {
+    var randomRoomNum = Math.floor((Math.random() * 9000) + 1000).toString();
     var roomList = io.sockets.adapter.rooms;
     while (roomList[randomRoomNum] !== undefined) {
-        randomRoomNum = Math.floor((Math.random() * 10000) + 1).toString();
+        randomRoomNum = Math.floor((Math.random() * 9000) + 1000).toString();
     }
-    response.redirect('/session/' + randomRoomNum + '/0');
+    response.redirect('/game1/' + randomRoomNum + '/0');
+});
+app.get('/game4', function (request, response) {
+    var randomRoomNum = Math.floor((Math.random() * 9000) + 1000).toString();
+    var roomList = io.sockets.adapter.rooms;
+    while (roomList[randomRoomNum] !== undefined) {
+        randomRoomNum = Math.floor((Math.random() * 9000) + 1000).toString();
+    }
+    response.redirect('/game4/' + randomRoomNum + '/0');
+});
+app.get('/', function (request, response) {
+    response.sendFile(__dirname + '/views/index.html');
 });
 
 io.on('connection', function (socket) {
